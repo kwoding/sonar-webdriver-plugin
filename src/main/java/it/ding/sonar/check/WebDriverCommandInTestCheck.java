@@ -10,12 +10,12 @@ import org.sonar.plugins.java.api.tree.MemberSelectExpressionTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 import org.sonar.plugins.java.api.tree.Tree;
 
-@Rule(key = "webdriver-method-invocation-in-test-check",
-    name = "webdriver-method-invocation-in-test-check",
-    description = "Avoid WebDriver method invocations in Test classes",
+@Rule(key = "webdriver-command-in-test-check",
+    name = "webdriver-command-in-test-check",
+    description = "Avoid WebDriver commands in Test classes",
     priority = Priority.CRITICAL,
     tags = {"bug"})
-public class WebDriverMethodInvocationInTestCheck extends BaseTestCheck {
+public class WebDriverCommandInTestCheck extends BaseTestCheck {
 
     @Override
     public void visitMethodInvocation(MethodInvocationTree tree) {
@@ -23,7 +23,7 @@ public class WebDriverMethodInvocationInTestCheck extends BaseTestCheck {
             String fullyQualifiedName = ((TypeJavaSymbol) getIdentifier(tree).symbol().owner()).getFullyQualifiedName();
 
             if (isPartOfWebDriverPackage(fullyQualifiedName)) {
-                context.reportIssue(this, tree, "Should not use WebDriver method invocations in Test classes.");
+                context.reportIssue(this, tree, "Should not use WebDriver commands in Test classes.");
             }
         }
     }

@@ -14,8 +14,8 @@ public class WebDriverChecksTest {
 
   @Test
   public void shouldAvoidWebDriverCommandsInTest() {
-    JavaCheckVerifier.verifyNoIssue("src/test/file/AvoidWebDriverCommandWithoutTestAnnotation.java", new WebDriverMethodInvocationInTestCheck());
-    JavaCheckVerifier.verify("src/test/file/AvoidWebDriverCommand.java", new WebDriverMethodInvocationInTestCheck());
+    JavaCheckVerifier.verifyNoIssue("src/test/file/AvoidWebDriverCommandWithoutTestAnnotation.java", new WebDriverCommandInTestCheck());
+    JavaCheckVerifier.verify("src/test/file/AvoidWebDriverCommand.java", new WebDriverCommandInTestCheck());
   }
 
   @Test

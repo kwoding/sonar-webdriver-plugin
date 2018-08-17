@@ -1,7 +1,7 @@
 package it.ding.sonar.config;
 
 import com.google.common.collect.ImmutableList;
-import it.ding.sonar.check.WebDriverMethodInvocationInTestCheck;
+import it.ding.sonar.check.WebDriverCommandInTestCheck;
 import org.sonar.plugins.java.api.JavaCheck;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public final class RulesList {
 
   public static List<Class<? extends JavaCheck>> getJavaChecks() {
     return ImmutableList.<Class<? extends JavaCheck>>builder()
-      .add(WebDriverMethodInvocationInTestCheck.class)
+      .add(WebDriverCommandInTestCheck.class)
       .build();
   }
 
