@@ -26,7 +26,7 @@ public class LocatorCssValueCheck extends BaseTreeVisitor implements JavaFileSca
 
     private JavaFileScannerContext context;
 
-    private static final List<String> CSS_LOCATORS = asList("cssSelector", "css");
+    private static final List<String> CSS_LOCATORS = asList("cssselector", "css");
 
     private static final String SPACE = " ";
 
