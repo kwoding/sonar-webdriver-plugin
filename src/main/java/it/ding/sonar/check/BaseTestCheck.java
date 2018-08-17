@@ -1,5 +1,6 @@
 package it.ding.sonar.check;
 
+import static it.ding.sonar.util.CommonUtil.isPartOfTestPackage;
 import static java.util.Arrays.asList;
 
 import java.util.List;
@@ -34,8 +35,9 @@ public class BaseTestCheck extends BaseTreeVisitor implements JavaFileScanner {
 
                 for (AnnotationTree annotationTree : annotationTrees) {
                     String annotation = annotationTree.annotationType().toString();
+                    String fullyQualifiedName = annotationTree.annotationType().symbolType().fullyQualifiedName();
 
-                    if (TEST_ANNOTATION_NAMES.contains(annotation)) {
+                    if (TEST_ANNOTATION_NAMES.contains(annotation) && isPartOfTestPackage(fullyQualifiedName)) {
                         super.visitClass(tree);
                     }
                 }

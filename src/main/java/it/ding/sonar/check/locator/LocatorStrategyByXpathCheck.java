@@ -1,4 +1,4 @@
-package it.ding.sonar.check;
+package it.ding.sonar.check.locator;
 
 import static it.ding.sonar.data.CommonData.LOCATORS_RECOMMENDED;
 import static it.ding.sonar.util.CommonUtil.getIdentifier;

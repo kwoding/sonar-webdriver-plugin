@@ -1,4 +1,4 @@
-package it.ding.sonar.check;
+package it.ding.sonar.check.wait;
 
 import static it.ding.sonar.data.CommonData.SELENIUM_PACKAGE_NAME;
 

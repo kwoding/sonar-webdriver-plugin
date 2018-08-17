@@ -1,4 +1,4 @@
-package it.ding.sonar.check;
+package it.ding.sonar.check.wait;
 
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;

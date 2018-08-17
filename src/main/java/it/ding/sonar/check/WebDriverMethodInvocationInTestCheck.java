@@ -1,7 +1,6 @@
 package it.ding.sonar.check;
 
-import static it.ding.sonar.data.CommonData.APPIUM_PACKAGE_NAME;
-import static it.ding.sonar.data.CommonData.SELENIUM_PACKAGE_NAME;
+import static it.ding.sonar.util.CommonUtil.isPartOfWebDriverPackage;
 
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
@@ -23,8 +22,7 @@ public class WebDriverMethodInvocationInTestCheck extends BaseTestCheck {
         if (!getIdentifier(tree).symbol().isUnknown()) {
             String fullyQualifiedName = ((TypeJavaSymbol) getIdentifier(tree).symbol().owner()).getFullyQualifiedName();
 
-            if (fullyQualifiedName.startsWith(SELENIUM_PACKAGE_NAME) ||
-            fullyQualifiedName.startsWith(APPIUM_PACKAGE_NAME)) {
+            if (isPartOfWebDriverPackage(fullyQualifiedName)) {
                 context.reportIssue(this, tree, "Should not use WebDriver method invocations in Test classes.");
             }
         }

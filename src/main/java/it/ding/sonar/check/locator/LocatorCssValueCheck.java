@@ -1,6 +1,5 @@
-package it.ding.sonar.check;
+package it.ding.sonar.check.locator;
 
-import static it.ding.sonar.data.CommonData.LOCATORS_RECOMMENDED;
 import static it.ding.sonar.util.CommonUtil.getIdentifier;
 import static it.ding.sonar.util.CommonUtil.getLocatorValueMapInAnnotation;
 import static it.ding.sonar.util.CommonUtil.methodInvocationIsPartOfWebDriverPackage;
@@ -15,25 +14,21 @@ import org.sonar.plugins.java.api.JavaFileScannerContext;
 import org.sonar.plugins.java.api.tree.AnnotationTree;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
+import org.sonar.plugins.java.api.tree.LiteralTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 
-@Rule(key = "locator-strategy-check",
-    name = "locator-strategy-check",
-    description = "Avoid locators based on link text, partial link text and tag name",
-    priority = Priority.CRITICAL,
+@Rule(key = "locator-css-value-check",
+    name = "locator-css-value-check",
+    description = "Avoid css locator tied to page layout",
+    priority = Priority.MAJOR,
     tags = {"bug"})
-public class LocatorStrategyByLinkTextAndTagNameCheck extends BaseTreeVisitor implements JavaFileScanner {
+public class LocatorCssValueCheck extends BaseTreeVisitor implements JavaFileScanner {
 
     private JavaFileScannerContext context;
 
-    public static final List<String> LOCATORS_TO_AVOID = asList(
-        "linkText",
-        "partialLinkText",
-        "tagName",
-        "LINK_TEXT",
-        "PARTIAL_LINK_TEXT",
-        "TAG_NAME"
-    );
+    private static final List<String> CSS_LOCATORS = asList("cssSelector", "css");
+
+    private static final String SPACE = " ";
 
     @Override
     public void scanFile(JavaFileScannerContext context) {
@@ -46,23 +41,33 @@ public class LocatorStrategyByLinkTextAndTagNameCheck extends BaseTreeVisitor im
     public void visitAnnotation(AnnotationTree tree) {
         Map<String, String> locatorsInAnnotation = getLocatorValueMapInAnnotation(tree);
 
-        for (Map.Entry<String,String> locator : locatorsInAnnotation.entrySet()) {
+        for (Map.Entry<String, String> locator : locatorsInAnnotation.entrySet()) {
             String locatorStrategy = locator.getKey();
-            checkLocator(tree, locatorStrategy);
+            String locatorValue = locator.getValue();
+
+            checkLocator(tree, locatorStrategy, locatorValue);
         }
     }
 
     @Override
     public void visitMethodInvocation(MethodInvocationTree tree) {
         if (methodInvocationIsPartOfWebDriverPackage(tree)) {
-            checkLocator(tree, getIdentifier(tree).name());
+            String locatorStrategy = getIdentifier(tree).name();
+
+            String locatorValue = !tree.arguments().isEmpty()
+                ? ((LiteralTree) tree.arguments().get(0)).value()
+                : null;
+
+            checkLocator(tree, locatorStrategy, locatorValue);
         }
     }
 
-    private void checkLocator(ExpressionTree expressionTree, String locatorStrategy) {
-        if (LOCATORS_TO_AVOID.contains(locatorStrategy)) {
+    private void checkLocator(ExpressionTree expressionTree, String locatorStrategy, String locatorValue) {
+        String value = locatorValue.replace("\"", "");
+
+        if (CSS_LOCATORS.contains(locatorStrategy.toLowerCase()) && value.contains(SPACE)) {
             context.reportIssue(this, expressionTree,
-                "Avoid using " + locatorStrategy + " locator, try using " + LOCATORS_RECOMMENDED.toString());
+                "Avoid using " + locatorStrategy + " locator tied to page layout");
         }
     }
 
