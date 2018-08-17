@@ -12,8 +12,13 @@ public class WebDriverChecksTest {
   }
 
   @Test
-  public void shouldAvoidLocatorByPath() {
+  public void shouldAvoidLocatorByXpath() {
     JavaCheckVerifier.verify("src/test/file/LocatorStrategyByXpath.java", new LocatorStrategyByXpathCheck());
+  }
+
+  @Test
+  public void shouldAvoidXpathLocatorTiedToPageLayout() {
+    JavaCheckVerifier.verify("src/test/file/LocatorXpathValue.java", new LocatorXpathValueCheck());
   }
 
   @Test
