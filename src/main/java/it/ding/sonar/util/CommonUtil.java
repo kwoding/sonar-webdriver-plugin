@@ -4,40 +4,63 @@ import static it.ding.sonar.data.CommonData.APPIUM_PACKAGE_NAME;
 import static it.ding.sonar.data.CommonData.FIND_BY_ANNOTATION_NAME;
 import static it.ding.sonar.data.CommonData.HOW_PROPERTY;
 import static it.ding.sonar.data.CommonData.SELENIUM_PACKAGE_NAME;
+import static it.ding.sonar.data.CommonData.USING_PROPERTY;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import org.sonar.java.resolve.JavaSymbol.TypeJavaSymbol;
 import org.sonar.plugins.java.api.tree.AnnotationTree;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
+import org.sonar.plugins.java.api.tree.LiteralTree;
 import org.sonar.plugins.java.api.tree.MemberSelectExpressionTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 import org.sonar.plugins.java.api.tree.Tree;
+import org.sonar.plugins.java.api.tree.Tree.Kind;
 
 public class CommonUtil {
 
-    public static List<String> getLocatorsInAnnotation(AnnotationTree annotationTree) {
-        List<String> locators = new ArrayList<>();
+    public static Map<String, String> getLocatorValueMapInAnnotation(AnnotationTree annotationTree) {
+        Map<String, String> locatorMap = new HashMap<>();
         String annotationType = annotationTree.annotationType().toString();
+        String fullyQualifiedName = annotationTree.annotationType().symbolType().fullyQualifiedName();
 
-        if (FIND_BY_ANNOTATION_NAME.equals(annotationType)) {
+        if (FIND_BY_ANNOTATION_NAME.equals(annotationType) &&
+            isPartOfWebDriverPackage(fullyQualifiedName)) {
             for (ExpressionTree expressionTree : annotationTree.arguments()) {
-                String property = ((AssignmentExpressionTree) expressionTree).variable().toString();
+                AssignmentExpressionTree assignmentExpressionTree = (AssignmentExpressionTree) expressionTree;
 
+                String property = assignmentExpressionTree.variable().toString();
                 String locator = HOW_PROPERTY.equals(property)
                     ? ((MemberSelectExpressionTree) ((AssignmentExpressionTree) expressionTree)
                     .expression()).identifier().name()
                     : ((AssignmentExpressionTree) expressionTree).variable().toString();
 
-                locators.add(locator);
+                String propertyValue = assignmentExpressionTree.expression().is(Kind.STRING_LITERAL) ?
+                    ((LiteralTree) assignmentExpressionTree.expression()).value() : null;
+
+                ExpressionTree howExpressionTree = annotationTree.arguments()
+                    .stream()
+                    .filter(aet -> HOW_PROPERTY.equals(((AssignmentExpressionTree) aet).variable().toString()))
+                    // Only one "how" property allowed in annotation
+                    .findFirst()
+                    .orElse(null);
+
+                if (USING_PROPERTY.equals(property)) {
+                    String howLocator = ((MemberSelectExpressionTree) ((AssignmentExpressionTree) howExpressionTree)
+                        .expression()).identifier().name();
+                    locatorMap.put(howLocator, propertyValue);
+                } else {
+                    locatorMap.put(locator, propertyValue);
+                }
             }
         }
 
-        return locators;
+        return locatorMap;
     }
-    public static boolean isPartOfWebDriverPackage(MethodInvocationTree methodInvocationTree) {
+
+    public static boolean methodInvocationIsPartOfWebDriverPackage(MethodInvocationTree methodInvocationTree) {
         if (getIdentifier(methodInvocationTree).symbol().isUnknown()) {
             return false;
         }
@@ -45,6 +68,10 @@ public class CommonUtil {
         String fullyQualifiedName = ((TypeJavaSymbol) getIdentifier(methodInvocationTree).symbol().owner())
             .getFullyQualifiedName();
 
+        return isPartOfWebDriverPackage(fullyQualifiedName);
+    }
+
+    private static boolean isPartOfWebDriverPackage(String fullyQualifiedName) {
         return fullyQualifiedName.startsWith(SELENIUM_PACKAGE_NAME) ||
             fullyQualifiedName.startsWith(APPIUM_PACKAGE_NAME);
     }

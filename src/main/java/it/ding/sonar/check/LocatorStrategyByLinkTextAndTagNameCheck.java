@@ -2,11 +2,12 @@ package it.ding.sonar.check;
 
 import static it.ding.sonar.data.CommonData.LOCATORS_RECOMMENDED;
 import static it.ding.sonar.util.CommonUtil.getIdentifier;
-import static it.ding.sonar.util.CommonUtil.getLocatorsInAnnotation;
-import static it.ding.sonar.util.CommonUtil.isPartOfWebDriverPackage;
+import static it.ding.sonar.util.CommonUtil.getLocatorValueMapInAnnotation;
+import static it.ding.sonar.util.CommonUtil.methodInvocationIsPartOfWebDriverPackage;
 import static java.util.Arrays.asList;
 
 import java.util.List;
+import java.util.Map;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.JavaFileScanner;
@@ -43,24 +44,25 @@ public class LocatorStrategyByLinkTextAndTagNameCheck extends BaseTreeVisitor im
 
     @Override
     public void visitAnnotation(AnnotationTree tree) {
-        List<String> locatorsInAnnotation = getLocatorsInAnnotation(tree);
+        Map<String, String> locatorsInAnnotation = getLocatorValueMapInAnnotation(tree);
 
-        for (String locator : locatorsInAnnotation) {
-            checkLocator(tree, locator);
+        for (Map.Entry<String,String> locator : locatorsInAnnotation.entrySet()) {
+            String locatorStrategy = locator.getKey();
+            checkLocator(tree, locatorStrategy);
         }
     }
 
     @Override
     public void visitMethodInvocation(MethodInvocationTree tree) {
-        if (isPartOfWebDriverPackage(tree)) {
+        if (methodInvocationIsPartOfWebDriverPackage(tree)) {
             checkLocator(tree, getIdentifier(tree).name());
         }
     }
 
-    private void checkLocator(ExpressionTree expressionTree, String locator) {
-        if (LOCATORS_TO_AVOID.contains(locator)) {
+    private void checkLocator(ExpressionTree expressionTree, String locatorStrategy) {
+        if (LOCATORS_TO_AVOID.contains(locatorStrategy)) {
             context.reportIssue(this, expressionTree,
-                "Avoid using " + locator + " locator, try using " + LOCATORS_RECOMMENDED.toString());
+                "Avoid using " + locatorStrategy + " locator, try using " + LOCATORS_RECOMMENDED.toString());
         }
     }
 
