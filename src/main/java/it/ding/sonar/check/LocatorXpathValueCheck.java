@@ -61,8 +61,7 @@ public class LocatorXpathValueCheck extends BaseTreeVisitor implements JavaFileS
     private void checkLocator(ExpressionTree expressionTree, String locatorStrategy, String locatorValue) {
         String value = locatorValue.replace("\"", "");
 
-        if (XPATH_LOCATOR.equalsIgnoreCase(locatorStrategy) &&
-        !value.matches("^//((?!/).)*")) {
+        if (XPATH_LOCATOR.equalsIgnoreCase(locatorStrategy) && !value.matches("^//((?!/).)*")) {
             context.reportIssue(this, expressionTree,
                 "Avoid using " + XPATH_LOCATOR + " locator tied to page layout");
         }

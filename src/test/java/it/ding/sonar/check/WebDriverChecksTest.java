@@ -22,6 +22,11 @@ public class WebDriverChecksTest {
   }
 
   @Test
+  public void shouldAvoidCssLocatorTiedToPageLayout() {
+    JavaCheckVerifier.verify("src/test/file/LocatorCssValue.java", new LocatorCssValueCheck());
+  }
+
+  @Test
   public void shouldAvoidLocatorsByLinkTextAndTagName() {
     JavaCheckVerifier.verify("src/test/file/LocatorStrategyByLinkTextAndTagName.java", new LocatorStrategyByLinkTextAndTagNameCheck());
   }
