@@ -2,7 +2,7 @@ package it.ding.sonar.check.locator;
 
 import static it.ding.sonar.util.CommonUtil.getIdentifier;
 import static it.ding.sonar.util.CommonUtil.getLocatorValueMapInAnnotation;
-import static it.ding.sonar.util.CommonUtil.methodInvocationIsPartOfWebDriverPackage;
+import static it.ding.sonar.util.CommonUtil.methodInvocationIsElementFinder;
 
 import java.util.Map;
 import org.sonar.check.Priority;
@@ -24,7 +24,9 @@ public class LocatorXpathValueCheck extends BaseTreeVisitor implements JavaFileS
 
     private JavaFileScannerContext context;
 
-    public static final String XPATH_LOCATOR = "xpath";
+    private static final String XPATH_LOCATOR = "xpath";
+
+    private static final String RECOMMENDED_XPATH_LOCATOR_REGEX = "^//((?!/).)*";
 
     @Override
     public void scanFile(JavaFileScannerContext context) {
@@ -47,7 +49,7 @@ public class LocatorXpathValueCheck extends BaseTreeVisitor implements JavaFileS
 
     @Override
     public void visitMethodInvocation(MethodInvocationTree tree) {
-        if (methodInvocationIsPartOfWebDriverPackage(tree)) {
+        if (methodInvocationIsElementFinder(tree)) {
             String locatorStrategy = getIdentifier(tree).name();
 
             String locatorValue = !tree.arguments().isEmpty()
@@ -61,11 +63,10 @@ public class LocatorXpathValueCheck extends BaseTreeVisitor implements JavaFileS
     private void checkLocator(ExpressionTree expressionTree, String locatorStrategy, String locatorValue) {
         String value = locatorValue.replace("\"", "");
 
-        if (XPATH_LOCATOR.equalsIgnoreCase(locatorStrategy) && !value.matches("^//((?!/).)*")) {
+        if (XPATH_LOCATOR.equalsIgnoreCase(locatorStrategy) && !value.matches(RECOMMENDED_XPATH_LOCATOR_REGEX)) {
             context.reportIssue(this, expressionTree,
                 "Avoid using " + XPATH_LOCATOR + " locator tied to page layout");
         }
     }
-
 
 }

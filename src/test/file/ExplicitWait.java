@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.junit.Test;
 
-public class Test {
+public class ExplicitWait {
 
     private RemoteWebDriver driver;
 

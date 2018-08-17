@@ -3,7 +3,7 @@ package it.ding.sonar.check.locator;
 import static it.ding.sonar.data.CommonData.LOCATORS_RECOMMENDED;
 import static it.ding.sonar.util.CommonUtil.getIdentifier;
 import static it.ding.sonar.util.CommonUtil.getLocatorValueMapInAnnotation;
-import static it.ding.sonar.util.CommonUtil.methodInvocationIsPartOfWebDriverPackage;
+import static it.ding.sonar.util.CommonUtil.methodInvocationIsElementFinder;
 
 import java.util.Map;
 import org.sonar.check.Priority;
@@ -45,7 +45,7 @@ public class LocatorStrategyByXpathCheck extends BaseTreeVisitor implements Java
 
     @Override
     public void visitMethodInvocation(MethodInvocationTree tree) {
-        if (methodInvocationIsPartOfWebDriverPackage(tree)) {
+        if (methodInvocationIsElementFinder(tree)) {
             checkLocator(tree, getIdentifier(tree).name());
         }
     }
@@ -56,6 +56,5 @@ public class LocatorStrategyByXpathCheck extends BaseTreeVisitor implements Java
                 "Avoid using " + XPATH_LOCATOR + " locator, try using " + LOCATORS_RECOMMENDED.toString());
         }
     }
-
 
 }
