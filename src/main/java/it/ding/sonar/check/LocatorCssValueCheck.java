@@ -3,7 +3,9 @@ package it.ding.sonar.check;
 import static it.ding.sonar.util.CommonUtil.getIdentifier;
 import static it.ding.sonar.util.CommonUtil.getLocatorValueMapInAnnotation;
 import static it.ding.sonar.util.CommonUtil.methodInvocationIsPartOfWebDriverPackage;
+import static java.util.Arrays.asList;
 
+import java.util.List;
 import java.util.Map;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
@@ -15,16 +17,18 @@ import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.LiteralTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 
-@Rule(key = "locator-xpath-value-check",
-    name = "locator-xpath-value-check",
-    description = "Avoid xpath locator tied to page layout",
+@Rule(key = "locator-css-value-check",
+    name = "locator-css-value-check",
+    description = "Avoid css locator tied to page layout",
     priority = Priority.MAJOR,
     tags = {"bug"})
-public class LocatorXpathValueCheck extends BaseTreeVisitor implements JavaFileScanner {
+public class LocatorCssValueCheck extends BaseTreeVisitor implements JavaFileScanner {
 
     private JavaFileScannerContext context;
 
-    public static final String XPATH_LOCATOR = "xpath";
+    private static final List<String> CSS_LOCATORS = asList("cssSelector", "css");
+
+    private static final String SPACE = " ";
 
     @Override
     public void scanFile(JavaFileScannerContext context) {
@@ -61,9 +65,9 @@ public class LocatorXpathValueCheck extends BaseTreeVisitor implements JavaFileS
     private void checkLocator(ExpressionTree expressionTree, String locatorStrategy, String locatorValue) {
         String value = locatorValue.replace("\"", "");
 
-        if (XPATH_LOCATOR.equalsIgnoreCase(locatorStrategy) && !value.matches("^//((?!/).)*")) {
+        if (CSS_LOCATORS.contains(locatorStrategy.toLowerCase()) && value.contains(SPACE)) {
             context.reportIssue(this, expressionTree,
-                "Avoid using " + XPATH_LOCATOR + " locator tied to page layout");
+                "Avoid using " + locatorStrategy + " locator tied to page layout");
         }
     }
 
