@@ -1,10 +1,9 @@
 package it.ding.sonar.check;
 
-import static it.ding.sonar.util.CommonUtil.isPartOfWebDriverPackage;
+import static it.ding.sonar.util.CommonUtil.methodInvocationIsPartOfWebDriverPackage;
 
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
-import org.sonar.java.resolve.JavaSymbol.TypeJavaSymbol;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
 import org.sonar.plugins.java.api.tree.MemberSelectExpressionTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
@@ -19,12 +18,8 @@ public class WebDriverCommandInTestCheck extends BaseTestCheck {
 
     @Override
     public void visitMethodInvocation(MethodInvocationTree tree) {
-        if (!getIdentifier(tree).symbol().isUnknown()) {
-            String fullyQualifiedName = ((TypeJavaSymbol) getIdentifier(tree).symbol().owner()).getFullyQualifiedName();
-
-            if (isPartOfWebDriverPackage(fullyQualifiedName)) {
-                context.reportIssue(this, tree, "Should not use WebDriver commands in Test classes.");
-            }
+        if (methodInvocationIsPartOfWebDriverPackage(tree)) {
+            context.reportIssue(this, tree, "Should not use WebDriver commands in Test classes.");
         }
     }
 

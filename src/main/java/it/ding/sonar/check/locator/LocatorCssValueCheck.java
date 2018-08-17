@@ -2,7 +2,7 @@ package it.ding.sonar.check.locator;
 
 import static it.ding.sonar.util.CommonUtil.getIdentifier;
 import static it.ding.sonar.util.CommonUtil.getLocatorValueMapInAnnotation;
-import static it.ding.sonar.util.CommonUtil.methodInvocationIsPartOfWebDriverPackage;
+import static it.ding.sonar.util.CommonUtil.methodInvocationIsElementFinder;
 import static java.util.Arrays.asList;
 
 import java.util.List;
@@ -51,7 +51,7 @@ public class LocatorCssValueCheck extends BaseTreeVisitor implements JavaFileSca
 
     @Override
     public void visitMethodInvocation(MethodInvocationTree tree) {
-        if (methodInvocationIsPartOfWebDriverPackage(tree)) {
+        if (methodInvocationIsElementFinder(tree)) {
             String locatorStrategy = getIdentifier(tree).name();
 
             String locatorValue = !tree.arguments().isEmpty()
@@ -70,6 +70,5 @@ public class LocatorCssValueCheck extends BaseTreeVisitor implements JavaFileSca
                 "Avoid using " + locatorStrategy + " locator tied to page layout");
         }
     }
-
 
 }
