@@ -14,8 +14,7 @@ import org.sonar.plugins.java.api.tree.Tree;
 @Rule(key = HARD_CODED_SLEEP_CHECK_KEY,
     name = "hard-coded-sleep-check",
     description = "Avoid using hard coded sleeps",
-    priority = Priority.CRITICAL,
-    tags = {"bug"})
+    priority = Priority.CRITICAL)
 public class HardCodedSleepCheck extends BaseTreeVisitor implements JavaFileScanner {
 
     public JavaFileScannerContext context;

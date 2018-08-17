@@ -15,8 +15,7 @@ import org.sonar.plugins.java.api.tree.Tree;
 @Rule(key = IMPLICIT_WAIT_CHECK_KEY,
     name = "implicit-wait-check",
     description = "Avoid using implicit waits",
-    priority = Priority.CRITICAL,
-    tags = {"bug"})
+    priority = Priority.CRITICAL)
 public class ImplicitWaitCheck extends BaseTreeVisitor implements JavaFileScanner {
 
     public JavaFileScannerContext context;

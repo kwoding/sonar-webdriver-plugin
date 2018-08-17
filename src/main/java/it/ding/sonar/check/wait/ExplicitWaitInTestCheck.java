@@ -11,8 +11,7 @@ import org.sonar.plugins.java.api.tree.NewClassTree;
 @Rule(key = EXPLICIT_WAIT_IN_TEST_CHECK_KEY,
     name = "explicit-wait-in-test-check",
     description = "Avoid using explicit waits in Test classes",
-    priority = Priority.CRITICAL,
-    tags = {"bug"})
+    priority = Priority.CRITICAL)
 public class ExplicitWaitInTestCheck extends BaseTestCheck {
 
     private static final String WAIT = "wait";

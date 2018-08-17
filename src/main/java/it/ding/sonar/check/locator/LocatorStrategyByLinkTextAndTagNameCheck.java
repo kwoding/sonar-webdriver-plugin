@@ -21,8 +21,7 @@ import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 @Rule(key = LOCATOR_STRATEGY_BY_LINK_TEXT_AND_TAG_NAME_CHECK_KEY,
     name = "locator-strategy-by-link-text-and-tag-name-check",
     description = "Avoid locators based on link text, partial link text and tag name",
-    priority = Priority.CRITICAL,
-    tags = {"bug"})
+    priority = Priority.CRITICAL)
 public class LocatorStrategyByLinkTextAndTagNameCheck extends BaseTreeVisitor implements JavaFileScanner {
 
     private JavaFileScannerContext context;

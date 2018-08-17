@@ -21,8 +21,7 @@ import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 @Rule(key = LOCATOR_CSS_VALUE_CHECK_KEY,
     name = "locator-css-value-check",
     description = "Avoid css locator tied to page layout",
-    priority = Priority.MAJOR,
-    tags = {"bug"})
+    priority = Priority.MAJOR)
 public class LocatorCssValueCheck extends BaseTreeVisitor implements JavaFileScanner {
 
     private JavaFileScannerContext context;
