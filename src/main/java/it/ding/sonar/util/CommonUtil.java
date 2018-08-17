@@ -13,7 +13,6 @@ import static it.ding.sonar.data.CommonData.USING_PROPERTY;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.sonar.java.resolve.JavaSymbol.TypeJavaSymbol;
 import org.sonar.plugins.java.api.tree.AnnotationTree;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
@@ -70,8 +69,7 @@ public class CommonUtil {
             return false;
         }
 
-        String fullyQualifiedName = ((TypeJavaSymbol) getIdentifier(methodInvocationTree).symbol().owner())
-            .getFullyQualifiedName();
+        String fullyQualifiedName = methodInvocationTree.symbol().owner().type().fullyQualifiedName();
 
         return isPartOfWebDriverPackage(fullyQualifiedName);
     }
@@ -84,8 +82,8 @@ public class CommonUtil {
         String methodName = getIdentifier(methodInvocationTree).name();
         String ownerName = getIdentifier(methodInvocationTree).symbol().owner().name();
 
-        return methodInvocationIsPartOfWebDriverPackage(methodInvocationTree) &&
-            (methodName.matches(FIND_ELEMENT_METHOD_REGEX) || ownerName.equals(BY_OBJECT_NAME));
+        return (methodName.matches(FIND_ELEMENT_METHOD_REGEX) || ownerName.equals(BY_OBJECT_NAME)) &&
+            methodInvocationIsPartOfWebDriverPackage(methodInvocationTree);
     }
 
     public static boolean isPartOfWebDriverPackage(String fullyQualifiedName) {
