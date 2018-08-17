@@ -1,10 +1,12 @@
 package it.ding.sonar.config;
 
+import static it.ding.sonar.data.CommonData.REPOSITORY_KEY;
+
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Iterables;
 import com.google.common.io.Resources;
 import com.google.gson.Gson;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.sonar.api.rule.RuleStatus;
 import org.sonar.api.rules.RuleType;
 import org.sonar.api.server.debt.DebtRemediationFunction;
@@ -25,8 +27,6 @@ public class WebDriverRulesDefinition implements RulesDefinition {
 
   // don't change that because the path is hard coded in CheckVerifier
   private static final String RESOURCE_BASE_PATH = "/org/sonar/l10n/java/rules/squid";
-
-  public static final String REPOSITORY_KEY = "sonar-webdriver-plugin";
 
   private static final String REPOSITORY_NAME = "Sonar WebDriver Plugin";
 

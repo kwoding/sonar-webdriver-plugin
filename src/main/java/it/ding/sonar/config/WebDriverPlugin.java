@@ -12,5 +12,8 @@ public class WebDriverPlugin implements Plugin {
 
     // batch extensions -> objects are instantiated during code analysis
     context.addExtension(WebDriverFileCheckRegistrar.class);
+
+    // add WebDriver Quality Profile
+    context.addExtension(WebDriverQualityProfile.class);
   }
 }
