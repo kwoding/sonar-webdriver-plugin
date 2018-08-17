@@ -1,9 +1,12 @@
 package it.ding.sonar.util;
 
 import static it.ding.sonar.data.CommonData.APPIUM_PACKAGE_NAME;
+import static it.ding.sonar.data.CommonData.CUCUMBER_PACKAGE_NAME;
 import static it.ding.sonar.data.CommonData.FIND_BY_ANNOTATION_NAME;
 import static it.ding.sonar.data.CommonData.HOW_PROPERTY;
+import static it.ding.sonar.data.CommonData.JUNIT_PACKAGE_NAME;
 import static it.ding.sonar.data.CommonData.SELENIUM_PACKAGE_NAME;
+import static it.ding.sonar.data.CommonData.TESTNG_PACKAGE_NAME;
 import static it.ding.sonar.data.CommonData.USING_PROPERTY;
 
 import java.util.HashMap;
@@ -71,9 +74,15 @@ public class CommonUtil {
         return isPartOfWebDriverPackage(fullyQualifiedName);
     }
 
-    private static boolean isPartOfWebDriverPackage(String fullyQualifiedName) {
+    public static boolean isPartOfWebDriverPackage(String fullyQualifiedName) {
         return fullyQualifiedName.startsWith(SELENIUM_PACKAGE_NAME) ||
             fullyQualifiedName.startsWith(APPIUM_PACKAGE_NAME);
+    }
+
+    public static boolean isPartOfTestPackage(String fullyQualifiedName) {
+        return fullyQualifiedName.startsWith(JUNIT_PACKAGE_NAME) ||
+            fullyQualifiedName.startsWith(TESTNG_PACKAGE_NAME) ||
+            fullyQualifiedName.startsWith(CUCUMBER_PACKAGE_NAME);
     }
 
     public static IdentifierTree getIdentifier(MethodInvocationTree methodInvocationTree) {

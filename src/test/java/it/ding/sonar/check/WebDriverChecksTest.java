@@ -1,5 +1,12 @@
 package it.ding.sonar.check;
 
+import it.ding.sonar.check.locator.LocatorCssValueCheck;
+import it.ding.sonar.check.locator.LocatorStrategyByLinkTextAndTagNameCheck;
+import it.ding.sonar.check.locator.LocatorStrategyByXpathCheck;
+import it.ding.sonar.check.locator.LocatorXpathValueCheck;
+import it.ding.sonar.check.wait.ExplicitWaitInTestCheck;
+import it.ding.sonar.check.wait.HardCodedSleepCheck;
+import it.ding.sonar.check.wait.ImplicitWaitCheck;
 import org.junit.Test;
 import org.sonar.java.checks.verifier.JavaCheckVerifier;
 
