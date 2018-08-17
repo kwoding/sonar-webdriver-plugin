@@ -1,12 +1,11 @@
 package it.ding.sonar.config;
 
+import static it.ding.sonar.data.CommonData.REPOSITORY_KEY;
+
+import java.util.List;
 import org.sonar.plugins.java.api.CheckRegistrar;
 import org.sonar.plugins.java.api.JavaCheck;
 import org.sonarsource.api.sonarlint.SonarLintSide;
-
-import java.util.List;
-
-import static it.ding.sonar.config.WebDriverRulesDefinition.REPOSITORY_KEY;
 
 @SonarLintSide
 public class WebDriverFileCheckRegistrar implements CheckRegistrar {
