@@ -19,8 +19,7 @@ import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 @Rule(key = LOCATOR_XPATH_VALUE_CHECK_KEY,
     name = "locator-xpath-value-check",
     description = "Avoid xpath locator tied to page layout",
-    priority = Priority.MAJOR,
-    tags = {"bug"})
+    priority = Priority.MAJOR)
 public class LocatorXpathValueCheck extends BaseTreeVisitor implements JavaFileScanner {
 
     private JavaFileScannerContext context;

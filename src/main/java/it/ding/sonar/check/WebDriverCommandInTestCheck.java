@@ -13,8 +13,7 @@ import org.sonar.plugins.java.api.tree.Tree;
 @Rule(key = WEBDRIVER_COMMAND_IN_TEST_CHECK_KEY,
     name = "webdriver-command-in-test-check",
     description = "Avoid WebDriver commands in Test classes",
-    priority = Priority.CRITICAL,
-    tags = {"bug"})
+    priority = Priority.CRITICAL)
 public class WebDriverCommandInTestCheck extends BaseTestCheck {
 
     @Override
