@@ -1,5 +1,7 @@
 package it.ding.sonar.check.wait;
 
+import static it.ding.sonar.data.CommonData.HARD_CODED_SLEEP_CHECK_KEY;
+
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.JavaFileScanner;
@@ -9,7 +11,7 @@ import org.sonar.plugins.java.api.tree.MemberSelectExpressionTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 import org.sonar.plugins.java.api.tree.Tree;
 
-@Rule(key = "hard-coded-sleep-check",
+@Rule(key = HARD_CODED_SLEEP_CHECK_KEY,
     name = "hard-coded-sleep-check",
     description = "Avoid using hard coded sleeps",
     priority = Priority.CRITICAL,

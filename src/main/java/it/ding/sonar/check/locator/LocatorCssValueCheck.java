@@ -1,5 +1,6 @@
 package it.ding.sonar.check.locator;
 
+import static it.ding.sonar.data.CommonData.LOCATOR_CSS_VALUE_CHECK_KEY;
 import static it.ding.sonar.util.CommonUtil.getIdentifier;
 import static it.ding.sonar.util.CommonUtil.getLocatorValueMapInAnnotation;
 import static it.ding.sonar.util.CommonUtil.methodInvocationIsElementFinder;
@@ -17,7 +18,7 @@ import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.LiteralTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 
-@Rule(key = "locator-css-value-check",
+@Rule(key = LOCATOR_CSS_VALUE_CHECK_KEY,
     name = "locator-css-value-check",
     description = "Avoid css locator tied to page layout",
     priority = Priority.MAJOR,

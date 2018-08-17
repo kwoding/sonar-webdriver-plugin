@@ -1,5 +1,6 @@
 package it.ding.sonar.check.wait;
 
+import static it.ding.sonar.data.CommonData.IMPLICIT_WAIT_CHECK_KEY;
 import static it.ding.sonar.data.CommonData.SELENIUM_PACKAGE_NAME;
 
 import org.sonar.check.Priority;
@@ -11,7 +12,7 @@ import org.sonar.plugins.java.api.tree.MemberSelectExpressionTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 import org.sonar.plugins.java.api.tree.Tree;
 
-@Rule(key = "implicit-wait-check",
+@Rule(key = IMPLICIT_WAIT_CHECK_KEY,
     name = "implicit-wait-check",
     description = "Avoid using implicit waits",
     priority = Priority.CRITICAL,

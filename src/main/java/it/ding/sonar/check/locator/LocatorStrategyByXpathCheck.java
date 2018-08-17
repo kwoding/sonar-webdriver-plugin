@@ -1,6 +1,7 @@
 package it.ding.sonar.check.locator;
 
 import static it.ding.sonar.data.CommonData.LOCATORS_RECOMMENDED;
+import static it.ding.sonar.data.CommonData.LOCATOR_STRATEGY_BY_XPATH_CHECK_KEY;
 import static it.ding.sonar.util.CommonUtil.getIdentifier;
 import static it.ding.sonar.util.CommonUtil.getLocatorValueMapInAnnotation;
 import static it.ding.sonar.util.CommonUtil.methodInvocationIsElementFinder;
@@ -15,8 +16,8 @@ import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 
-@Rule(key = "locator-strategy-check",
-    name = "locator-strategy-check",
+@Rule(key = LOCATOR_STRATEGY_BY_XPATH_CHECK_KEY,
+    name = "locator-strategy-xpath-check",
     description = "Avoid xpath locator",
     priority = Priority.MAJOR,
     tags = {"bug"})
