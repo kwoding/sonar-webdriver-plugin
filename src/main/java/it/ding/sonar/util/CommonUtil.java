@@ -86,7 +86,7 @@ public class CommonUtil {
             methodInvocationIsPartOfWebDriverPackage(methodInvocationTree);
     }
 
-    public static boolean isPartOfWebDriverPackage(String fullyQualifiedName) {
+    private static boolean isPartOfWebDriverPackage(String fullyQualifiedName) {
         return fullyQualifiedName.startsWith(SELENIUM_PACKAGE_NAME) ||
             fullyQualifiedName.startsWith(APPIUM_PACKAGE_NAME);
     }
