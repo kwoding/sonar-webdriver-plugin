@@ -7,7 +7,6 @@ import static it.ding.sonar.util.CommonUtil.getLocatorValueMapInAnnotation;
 import static it.ding.sonar.util.CommonUtil.methodInvocationIsElementFinder;
 
 import java.util.Map;
-import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.JavaFileScanner;
 import org.sonar.plugins.java.api.JavaFileScannerContext;
@@ -16,10 +15,7 @@ import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 
-@Rule(key = LOCATOR_STRATEGY_BY_XPATH_CHECK_KEY,
-    name = "locator-strategy-xpath-check",
-    description = "Avoid xpath locator",
-    priority = Priority.MAJOR)
+@Rule(key = LOCATOR_STRATEGY_BY_XPATH_CHECK_KEY)
 public class LocatorStrategyByXpathCheck extends BaseTreeVisitor implements JavaFileScanner {
 
     private JavaFileScannerContext context;

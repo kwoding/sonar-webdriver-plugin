@@ -1,0 +1,11 @@
+<p>Avoid using locators by xpath</p>
+<p>Good locators are unique, descriptive and unlikely to change.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+  By.xpath("//*[@automation="submitButton"]"); // Noncompliant
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+  By.cssSelector("[automation="submitButton]");
+</pre>
+

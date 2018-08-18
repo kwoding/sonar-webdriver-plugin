@@ -9,7 +9,6 @@ import static java.util.Arrays.asList;
 
 import java.util.List;
 import java.util.Map;
-import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.JavaFileScanner;
 import org.sonar.plugins.java.api.JavaFileScannerContext;
@@ -18,10 +17,7 @@ import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 
-@Rule(key = LOCATOR_STRATEGY_BY_LINK_TEXT_AND_TAG_NAME_CHECK_KEY,
-    name = "locator-strategy-by-link-text-and-tag-name-check",
-    description = "Avoid locators based on link text, partial link text and tag name",
-    priority = Priority.CRITICAL)
+@Rule(key = LOCATOR_STRATEGY_BY_LINK_TEXT_AND_TAG_NAME_CHECK_KEY)
 public class LocatorStrategyByLinkTextAndTagNameCheck extends BaseTreeVisitor implements JavaFileScanner {
 
     private JavaFileScannerContext context;

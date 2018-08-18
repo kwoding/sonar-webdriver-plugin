@@ -2,7 +2,6 @@ package it.ding.sonar.check.wait;
 
 import static it.ding.sonar.data.CommonData.HARD_CODED_SLEEP_CHECK_KEY;
 
-import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.JavaFileScanner;
 import org.sonar.plugins.java.api.JavaFileScannerContext;
@@ -11,10 +10,7 @@ import org.sonar.plugins.java.api.tree.MemberSelectExpressionTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 import org.sonar.plugins.java.api.tree.Tree;
 
-@Rule(key = HARD_CODED_SLEEP_CHECK_KEY,
-    name = "hard-coded-sleep-check",
-    description = "Avoid using hard coded sleeps",
-    priority = Priority.CRITICAL)
+@Rule(key = HARD_CODED_SLEEP_CHECK_KEY)
 public class HardCodedSleepCheck extends BaseTreeVisitor implements JavaFileScanner {
 
     public JavaFileScannerContext context;
@@ -39,7 +35,7 @@ public class HardCodedSleepCheck extends BaseTreeVisitor implements JavaFileScan
 
             if (SLEEP_METHOD_NAME.equals(methodName) &&
                 fullyQualifiedNameOfExpression.equals(THREAD)) {
-                context.reportIssue(this, tree, "Avoid using hard coded sleeps");
+                context.reportIssue(this, tree, "Avoid using hard coded sleeps, use explicit wait instead");
             }
         }
     }

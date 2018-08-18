@@ -2,10 +2,10 @@ package it.ding.sonar.config;
 
 import com.google.common.collect.ImmutableList;
 import it.ding.sonar.check.WebDriverCommandInTestCheck;
-import it.ding.sonar.check.locator.LocatorCssValueCheck;
+import it.ding.sonar.check.locator.CssLocatorValueCheck;
 import it.ding.sonar.check.locator.LocatorStrategyByLinkTextAndTagNameCheck;
 import it.ding.sonar.check.locator.LocatorStrategyByXpathCheck;
-import it.ding.sonar.check.locator.LocatorXpathValueCheck;
+import it.ding.sonar.check.locator.XpathLocatorValueCheck;
 import it.ding.sonar.check.wait.ExplicitWaitInTestCheck;
 import it.ding.sonar.check.wait.HardCodedSleepCheck;
 import it.ding.sonar.check.wait.ImplicitWaitCheck;
@@ -23,10 +23,10 @@ public final class RulesList {
 
   public static List<Class<? extends JavaCheck>> getJavaChecks() {
     return ImmutableList.<Class<? extends JavaCheck>>builder()
-      .add(LocatorCssValueCheck.class)
+      .add(CssLocatorValueCheck.class)
       .add(LocatorStrategyByLinkTextAndTagNameCheck.class)
       .add(LocatorStrategyByXpathCheck.class)
-      .add(LocatorXpathValueCheck.class)
+      .add(XpathLocatorValueCheck.class)
       .add(ExplicitWaitInTestCheck.class)
       .add(HardCodedSleepCheck.class)
       .add(ImplicitWaitCheck.class)
