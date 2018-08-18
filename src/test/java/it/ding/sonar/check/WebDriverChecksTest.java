@@ -1,9 +1,9 @@
 package it.ding.sonar.check;
 
-import it.ding.sonar.check.locator.LocatorCssValueCheck;
+import it.ding.sonar.check.locator.CssLocatorValueCheck;
 import it.ding.sonar.check.locator.LocatorStrategyByLinkTextAndTagNameCheck;
 import it.ding.sonar.check.locator.LocatorStrategyByXpathCheck;
-import it.ding.sonar.check.locator.LocatorXpathValueCheck;
+import it.ding.sonar.check.locator.XpathLocatorValueCheck;
 import it.ding.sonar.check.wait.ExplicitWaitInTestCheck;
 import it.ding.sonar.check.wait.HardCodedSleepCheck;
 import it.ding.sonar.check.wait.ImplicitWaitCheck;
@@ -25,12 +25,12 @@ public class WebDriverChecksTest {
 
   @Test
   public void shouldAvoidXpathLocatorTiedToPageLayout() {
-    JavaCheckVerifier.verify("src/test/file/LocatorXpathValue.java", new LocatorXpathValueCheck());
+    JavaCheckVerifier.verify("src/test/file/LocatorXpathValue.java", new XpathLocatorValueCheck());
   }
 
   @Test
   public void shouldAvoidCssLocatorTiedToPageLayout() {
-    JavaCheckVerifier.verify("src/test/file/LocatorCssValue.java", new LocatorCssValueCheck());
+    JavaCheckVerifier.verify("src/test/file/LocatorCssValue.java", new CssLocatorValueCheck());
   }
 
   @Test

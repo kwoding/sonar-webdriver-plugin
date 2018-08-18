@@ -1,0 +1,22 @@
+<p>WebDriver commands should not be used in tests. Best practice is to have WebDriver commands in Base or Page
+  Objects.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+  By.cssSelector("#form div input"); // Noncompliant
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+  // Implement wrapper methods in a Base class, for example:
+  public void type(By locator, String inputText) {
+        find(locator).sendKeys(inputText);
+  }
+
+  private WebElement find(By locator) {
+        return driver.findElement(locator);
+  }
+</pre>
+<h2>Exceptions</h2>
+<p>TODO</p>
+<pre>
+TODO
+</pre>

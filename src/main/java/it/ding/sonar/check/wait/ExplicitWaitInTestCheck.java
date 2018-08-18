@@ -4,14 +4,10 @@ import static it.ding.sonar.data.CommonData.EXPLICIT_WAIT_IN_TEST_CHECK_KEY;
 import static it.ding.sonar.data.CommonData.SELENIUM_PACKAGE_NAME;
 
 import it.ding.sonar.check.BaseTestCheck;
-import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.tree.NewClassTree;
 
-@Rule(key = EXPLICIT_WAIT_IN_TEST_CHECK_KEY,
-    name = "explicit-wait-in-test-check",
-    description = "Avoid using explicit waits in Test classes",
-    priority = Priority.CRITICAL)
+@Rule(key = EXPLICIT_WAIT_IN_TEST_CHECK_KEY)
 public class ExplicitWaitInTestCheck extends BaseTestCheck {
 
     private static final String WAIT = "wait";

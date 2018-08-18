@@ -11,10 +11,10 @@ public class CommonData {
 
     public static final String REPOSITORY_KEY = "sonar-webdriver-plugin";
 
-    public static final String LOCATOR_CSS_VALUE_CHECK_KEY = "locator-css-value-check";
+    public static final String CSS_LOCATOR_VALUE_CHECK = "css-locator-value-check";
     public static final String LOCATOR_STRATEGY_BY_LINK_TEXT_AND_TAG_NAME_CHECK_KEY = "locator-strategy-by-link-text-and-tag-name-check";
     public static final String LOCATOR_STRATEGY_BY_XPATH_CHECK_KEY = "locator-strategy-by-xpath-check";
-    public static final String LOCATOR_XPATH_VALUE_CHECK_KEY = "locator-xpath-value-check";
+    public static final String XPATH_LOCATOR_VALUE_CHECK = "xpath-locator-value-check";
     public static final String EXPLICIT_WAIT_IN_TEST_CHECK_KEY = "explicit-wait-in-test-check";
     public static final String HARD_CODED_SLEEP_CHECK_KEY = "hard-coded-sleep-check";
     public static final String IMPLICIT_WAIT_CHECK_KEY = "implicit-wait-check";

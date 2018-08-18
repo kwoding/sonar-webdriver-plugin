@@ -13,7 +13,7 @@ public class TheInternetLoginPage extends Base {
     private static final By USERNAME = By.name("#username");
     private static final By PASSWORD = By.cssSelector("#password");
     private static final By SUBMIT = By.linkText("submit");
-    private static final By CONFIRMATION_TEXT =  By.xpath("/confirmation/book/message[text()]"); // Noncompliant
+    private static final By CONFIRMATION_TEXT = By.xpath("/confirmation/book/message[text()]"); // Noncompliant
 
     @FindBy(tagName = "search")
     private WebElement searchBox;

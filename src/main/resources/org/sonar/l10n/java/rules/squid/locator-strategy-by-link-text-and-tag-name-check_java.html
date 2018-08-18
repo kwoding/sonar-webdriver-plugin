@@ -1,0 +1,12 @@
+<p>Avoid using locators by link text, partial link text and tag name</p>
+<p>Good locators are unique, descriptive and unlikely to change.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+  By.linkText("Submit Survey"); // Noncompliant
+  By.tagName("button"); // Noncompliant
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+  By.id("submitButton");
+</pre>
+

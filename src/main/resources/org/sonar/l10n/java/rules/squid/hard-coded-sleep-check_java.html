@@ -1,0 +1,19 @@
+<p>Avoid using hard coded sleeps. Use explicit waits instead.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+  Thread.sleep(1000); // Noncompliant
+</pre>
+<h2>Compliant Solution</h2>
+<p></p>
+<pre>
+  // Implement method using explicit wait, example:
+  public boolean isDisplayed(By locator, int timeout) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, timeout);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (org.openqa.selenium.TimeoutException exception) {
+            return false;
+        }
+        return true;
+    }
+</pre>

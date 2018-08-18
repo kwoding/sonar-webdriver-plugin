@@ -1,0 +1,10 @@
+{
+  "title": "Should not use implicit waits",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "tags": [
+    "webdriver"
+  ],
+  "defaultSeverity": "Critical",
+  "scope": "all"
+}

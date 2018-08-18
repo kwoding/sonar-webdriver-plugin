@@ -1,12 +1,11 @@
 package it.ding.sonar.check.locator;
 
-import static it.ding.sonar.data.CommonData.LOCATOR_XPATH_VALUE_CHECK_KEY;
+import static it.ding.sonar.data.CommonData.XPATH_LOCATOR_VALUE_CHECK;
 import static it.ding.sonar.util.CommonUtil.getIdentifier;
 import static it.ding.sonar.util.CommonUtil.getLocatorValueMapInAnnotation;
 import static it.ding.sonar.util.CommonUtil.methodInvocationIsElementFinder;
 
 import java.util.Map;
-import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.JavaFileScanner;
 import org.sonar.plugins.java.api.JavaFileScannerContext;
@@ -16,11 +15,8 @@ import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.LiteralTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 
-@Rule(key = LOCATOR_XPATH_VALUE_CHECK_KEY,
-    name = "locator-xpath-value-check",
-    description = "Avoid xpath locator tied to page layout",
-    priority = Priority.MAJOR)
-public class LocatorXpathValueCheck extends BaseTreeVisitor implements JavaFileScanner {
+@Rule(key = XPATH_LOCATOR_VALUE_CHECK)
+public class XpathLocatorValueCheck extends BaseTreeVisitor implements JavaFileScanner {
 
     private JavaFileScannerContext context;
 

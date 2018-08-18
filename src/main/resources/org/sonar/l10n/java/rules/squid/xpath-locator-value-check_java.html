@@ -1,0 +1,12 @@
+<p>Locators based on css should not be tied to page layout. Page layout can be changed frequently.
+  Xpath locators which does not start with <code>//</code> (relative) and having a "<code>/</code>" defines it to be tied to page layout.</p>
+<p>Good locators are unique, descriptive and unlikely to change.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+  By.xpath("/confirmation/book/message[text()]"); // Noncompliant
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+  By.xpath("//*[@id="element_id"]");
+</pre>
+

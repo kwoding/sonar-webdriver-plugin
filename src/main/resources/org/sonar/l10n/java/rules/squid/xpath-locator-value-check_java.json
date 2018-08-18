@@ -1,0 +1,10 @@
+{
+  "title": "Locators based on xpath should not be tied to page layout",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "tags": [
+    "webdriver"
+  ],
+  "defaultSeverity": "Critical",
+  "scope": "all"
+}
