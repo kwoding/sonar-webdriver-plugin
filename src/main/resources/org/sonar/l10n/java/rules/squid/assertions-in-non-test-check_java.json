@@ -1,0 +1,10 @@
+{
+  "title": "Should not use assertions in non test classes",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "tags": [
+    "webdriver"
+  ],
+  "defaultSeverity": "Major",
+  "scope": "all"
+}

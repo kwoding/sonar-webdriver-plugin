@@ -1,6 +1,7 @@
 package it.ding.sonar.config;
 
 import com.google.common.collect.ImmutableList;
+import it.ding.sonar.check.AssertionInNonTestCheck;
 import it.ding.sonar.check.WebDriverCommandInTestCheck;
 import it.ding.sonar.check.locator.CssLocatorValueCheck;
 import it.ding.sonar.check.locator.LocatorStrategyByLinkTextAndTagNameCheck;
@@ -31,6 +32,7 @@ public final class RulesList {
       .add(HardCodedSleepCheck.class)
       .add(ImplicitWaitCheck.class)
       .add(WebDriverCommandInTestCheck.class)
+      .add(AssertionInNonTestCheck.class)
       .build();
   }
 

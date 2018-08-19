@@ -53,4 +53,9 @@ public class WebDriverChecksTest {
     JavaCheckVerifier.verify("src/test/file/HardCodedSleep.java", new HardCodedSleepCheck());
   }
 
+  @Test
+  public void shouldAvoidAssertionsInNonTest() {
+    JavaCheckVerifier.verify("src/test/file/AssertionInNonTest.java", new AssertionInNonTestCheck());
+  }
+
 }

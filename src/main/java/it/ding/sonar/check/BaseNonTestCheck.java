@@ -12,7 +12,7 @@ import org.sonar.plugins.java.api.tree.ClassTree;
 import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.plugins.java.api.tree.Tree;
 
-public class BaseTestCheck extends BaseTreeVisitor implements JavaFileScanner {
+public class BaseNonTestCheck extends BaseTreeVisitor implements JavaFileScanner {
 
     public JavaFileScannerContext context;
 
@@ -26,15 +26,18 @@ public class BaseTestCheck extends BaseTreeVisitor implements JavaFileScanner {
     @Override
     public void visitClass(ClassTree tree) {
         boolean visitClass = false;
-
         List<Tree> members = tree.members();
 
         for (Tree member : members) {
             if (METHOD_KIND.equals(member.kind().toString())) {
                 List<AnnotationTree> annotationTrees = ((MethodTree) member).modifiers().annotations();
 
-                if (annotationsContainAnnotationWhichIsPartOfTestPackage(annotationTrees)) {
+                if (annotationTrees.isEmpty()) {
                     visitClass = true;
+                } else {
+                    if (!annotationsContainAnnotationWhichIsPartOfTestPackage(annotationTrees)) {
+                        visitClass = true;
+                    }
                 }
             }
         }
