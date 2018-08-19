@@ -5,10 +5,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.greaterThan;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-
 public class Abc {
 
     private static final String WEB_HUB_URL = "http://localhost:4444/wd/hub";

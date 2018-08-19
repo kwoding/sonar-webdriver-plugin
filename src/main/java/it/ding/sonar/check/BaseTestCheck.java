@@ -1,7 +1,7 @@
 package it.ding.sonar.check;
 
-import static it.ding.sonar.util.CommonUtil.isPartOfTestPackage;
-import static java.util.Arrays.asList;
+import static it.ding.sonar.data.CommonData.METHOD_KIND;
+import static it.ding.sonar.util.CommonUtil.annotationsContainAnnotationWhichIsPartOfTestPackage;
 
 import java.util.List;
 import org.sonar.plugins.java.api.JavaFileScanner;
@@ -15,8 +15,6 @@ import org.sonar.plugins.java.api.tree.Tree;
 public class BaseTestCheck extends BaseTreeVisitor implements JavaFileScanner {
 
     public JavaFileScannerContext context;
-    private static final String METHOD = "METHOD";
-    private static final List<String> TEST_ANNOTATION_NAMES = asList("Test", "Given", "When", "Then");
 
     @Override
     public void scanFile(JavaFileScannerContext context) {
@@ -27,21 +25,22 @@ public class BaseTestCheck extends BaseTreeVisitor implements JavaFileScanner {
 
     @Override
     public void visitClass(ClassTree tree) {
+        boolean visitClass = false;
+
         List<Tree> members = tree.members();
 
         for (Tree member : members) {
-            if (METHOD.equals(member.kind().toString())) {
+            if (METHOD_KIND.equals(member.kind().toString())) {
                 List<AnnotationTree> annotationTrees = ((MethodTree) member).modifiers().annotations();
 
-                for (AnnotationTree annotationTree : annotationTrees) {
-                    String annotation = annotationTree.annotationType().toString();
-                    String fullyQualifiedName = annotationTree.annotationType().symbolType().fullyQualifiedName();
-
-                    if (TEST_ANNOTATION_NAMES.contains(annotation) && isPartOfTestPackage(fullyQualifiedName)) {
-                        super.visitClass(tree);
-                    }
+                if (annotationsContainAnnotationWhichIsPartOfTestPackage(annotationTrees)) {
+                    visitClass = true;
                 }
             }
+        }
+
+        if (visitClass) {
+            super.visitClass(tree);
         }
     }
 }

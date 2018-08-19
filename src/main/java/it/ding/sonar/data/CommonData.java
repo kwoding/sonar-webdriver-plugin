@@ -11,6 +11,8 @@ public class CommonData {
 
     public static final String REPOSITORY_KEY = "sonar-webdriver-plugin";
 
+    public static final String METHOD_KIND = "METHOD";
+    public static final List<String> TEST_ANNOTATION_NAMES = asList("Test", "Given", "When", "Then");
     public static final String CSS_LOCATOR_VALUE_CHECK = "css-locator-value-check";
     public static final String LOCATOR_STRATEGY_BY_LINK_TEXT_AND_TAG_NAME_CHECK_KEY = "locator-strategy-by-link-text-and-tag-name-check";
     public static final String LOCATOR_STRATEGY_BY_XPATH_CHECK_KEY = "locator-strategy-by-xpath-check";
@@ -19,6 +21,7 @@ public class CommonData {
     public static final String HARD_CODED_SLEEP_CHECK_KEY = "hard-coded-sleep-check";
     public static final String IMPLICIT_WAIT_CHECK_KEY = "implicit-wait-check";
     public static final String WEBDRIVER_COMMAND_IN_TEST_CHECK_KEY = "webdriver-command-in-test-check";
+    public static final String ASSERTIONS_IN_NON_TEST_CHECK_KEY = "assertions-in-non-test-check";
 
     public static final String SELENIUM_PACKAGE_NAME = "org.openqa.selenium";
     public static final String APPIUM_PACKAGE_NAME = "io.appium";
@@ -36,4 +39,16 @@ public class CommonData {
         "id",
         "name"
     );
+
+    public static final String VERIFY = "verify";
+    public static final String ASSERT = "assert";
+    public static final String FAIL = "fail";
+    public static final String EXPECT = "expect";
+
+    //    public static final String JUNIT_PACKAGE_NAME = "org.junit";
+    public static final String FEST_PACKAGE_NAME = "org.fest";
+    public static final String ASSERTJ_PACKAGE_NAME = "org.assertj";
+    public static final String HAMCREST_PACKAGE_NAME = "org.hamcrest";
+    public static final String TRUTH_PACKAGE_NAME = "com.google.common.truth";
+    public static final String VERTX_PACKAGE_NAME = "io.vertx";
 }

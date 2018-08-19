@@ -1,5 +1,6 @@
 package it.ding.sonar.config;
 
+import static it.ding.sonar.data.CommonData.ASSERTIONS_IN_NON_TEST_CHECK_KEY;
 import static it.ding.sonar.data.CommonData.EXPLICIT_WAIT_IN_TEST_CHECK_KEY;
 import static it.ding.sonar.data.CommonData.HARD_CODED_SLEEP_CHECK_KEY;
 import static it.ding.sonar.data.CommonData.IMPLICIT_WAIT_CHECK_KEY;
@@ -30,6 +31,7 @@ public class WebDriverQualityProfile implements BuiltInQualityProfilesDefinition
         profile.activateRule(REPOSITORY_KEY, HARD_CODED_SLEEP_CHECK_KEY);
         profile.activateRule(REPOSITORY_KEY, IMPLICIT_WAIT_CHECK_KEY);
         profile.activateRule(REPOSITORY_KEY, WEBDRIVER_COMMAND_IN_TEST_CHECK_KEY);
+        profile.activateRule(REPOSITORY_KEY, ASSERTIONS_IN_NON_TEST_CHECK_KEY);
 
         profile.done();
     }
