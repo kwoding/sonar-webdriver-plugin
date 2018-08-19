@@ -25,7 +25,7 @@ public class CssLocatorValueCheck extends BaseTreeVisitor implements JavaFileSca
     private static final List<String> CSS_LOCATORS = asList("cssselector", "css");
 
     // At least two times a space or ">"
-    private static final String AVOID_CSS_LOCATOR_REGEX = "((.*[^>]\\s+[^>].*)|(.*\\s*>\\s*.*)){2,}";
+    private static final String AVOID_CSS_LOCATOR_REGEX = "(([^>]*\\s+[^>]*)|(.*\\s*>\\s*.*)){2,}";
 
     @Override
     public void scanFile(JavaFileScannerContext context) {

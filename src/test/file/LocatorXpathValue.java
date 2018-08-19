@@ -18,13 +18,13 @@ public class TheInternetLoginPage extends Base {
     @FindBy(tagName = "search")
     private WebElement searchBox;
 
-    @FindBy(how = How.XPATH, using = "/search/submit/button[text()]") // Noncompliant
+    @FindBy(how = How.XPATH, using = "/search/submit/button") // Noncompliant
     private WebElement searchSubmitButton;
 
-    @FindBy(xpath = "//cancel/button[text()]") // Noncompliant
+    @FindBy(xpath = "//cancel/button[@id=\"element\"]")
     private WebElement cancelButton;
 
-    @FindBy(xpath = "//cancel[text()]")
+    @FindBy(xpath = "//*[@id=\"element_id\"]")
     private WebElement cancelText;
 
     public TheInternetLoginPage(RemoteWebDriver driver) {

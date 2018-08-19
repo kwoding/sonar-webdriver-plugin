@@ -22,7 +22,8 @@ public class XpathLocatorValueCheck extends BaseTreeVisitor implements JavaFileS
 
     private static final String XPATH_LOCATOR = "xpath";
 
-    private static final String RECOMMENDED_XPATH_LOCATOR_REGEX = "^//((?!/).)*";
+    // At least starting with double slash and zero or one time a single slash in the rest of the string
+    private static final String RECOMMENDED_XPATH_LOCATOR_REGEX = "^//[^/]*/?[^/]*$";
 
     @Override
     public void scanFile(JavaFileScannerContext context) {
