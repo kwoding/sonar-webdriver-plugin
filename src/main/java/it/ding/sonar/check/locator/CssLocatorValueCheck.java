@@ -24,7 +24,8 @@ public class CssLocatorValueCheck extends BaseTreeVisitor implements JavaFileSca
 
     private static final List<String> CSS_LOCATORS = asList("cssselector", "css");
 
-    private static final String SPACE = " ";
+    // At least two times a space or ">"
+    private static final String AVOID_CSS_LOCATOR_REGEX = "((.*[^>]\\s+[^>].*)|(.*\\s*>\\s*.*)){2,}";
 
     @Override
     public void scanFile(JavaFileScannerContext context) {
@@ -61,7 +62,7 @@ public class CssLocatorValueCheck extends BaseTreeVisitor implements JavaFileSca
     private void checkLocator(ExpressionTree expressionTree, String locatorStrategy, String locatorValue) {
         String value = locatorValue.replace("\"", "");
 
-        if (CSS_LOCATORS.contains(locatorStrategy.toLowerCase()) && value.contains(SPACE)) {
+        if (CSS_LOCATORS.contains(locatorStrategy.toLowerCase()) && value.matches(AVOID_CSS_LOCATOR_REGEX)) {
             context.reportIssue(this, expressionTree,
                 "Avoid using " + locatorStrategy + " locator tied to page layout");
         }
