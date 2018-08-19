@@ -4,10 +4,7 @@ import static it.ding.sonar.data.CommonData.WEBDRIVER_COMMAND_IN_TEST_CHECK_KEY;
 import static it.ding.sonar.util.CommonUtil.methodInvocationIsPartOfWebDriverPackage;
 
 import org.sonar.check.Rule;
-import org.sonar.plugins.java.api.tree.IdentifierTree;
-import org.sonar.plugins.java.api.tree.MemberSelectExpressionTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
-import org.sonar.plugins.java.api.tree.Tree;
 
 @Rule(key = WEBDRIVER_COMMAND_IN_TEST_CHECK_KEY)
 public class WebDriverCommandInTestCheck extends BaseTestCheck {
@@ -17,14 +14,6 @@ public class WebDriverCommandInTestCheck extends BaseTestCheck {
         if (methodInvocationIsPartOfWebDriverPackage(tree)) {
             context.reportIssue(this, tree, "Should not use WebDriver commands in Test classes.");
         }
-    }
-
-    private static IdentifierTree getIdentifier(MethodInvocationTree mit) {
-        // methodSelect can only be Tree.Kind.IDENTIFIER or Tree.Kind.MEMBER_SELECT
-        if (mit.methodSelect().is(Tree.Kind.IDENTIFIER)) {
-            return (IdentifierTree) mit.methodSelect();
-        }
-        return ((MemberSelectExpressionTree) mit.methodSelect()).identifier();
     }
 
 }
