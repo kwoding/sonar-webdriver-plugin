@@ -11,20 +11,20 @@ public class TheInternetLoginPage extends Base {
 
     private static final String LOGIN_URL = "http://the-internet.herokuapp.com/login";
     private static final By USERNAME = By.name("#username");
-    private static final By PASSWORD = By.cssSelector("#pass #word"); // Noncompliant
+    private static final By PASSWORD = By.cssSelector("#pass #word #text"); // Noncompliant
     private static final By SUBMIT = By.linkText("submit");
     private static final By CONFIRMATION_TEXT =  By.xpath("/confirmation/book/message[text()]");
 
     @FindBy(tagName = "search")
     private WebElement searchBox;
 
-    @FindBy(how = How.CSS, using = ".search #button") // Noncompliant
+    @FindBy(how = How.CSS, using = ".search #button div") // Noncompliant
     private WebElement searchSubmitButton;
 
     @FindBy(how = How.CSS, using = ".button")
     private WebElement cancelButton;
 
-    @FindBy(css = "#cancel #text") // Noncompliant
+    @FindBy(css = "#cancel #text")
     private WebElement cancelText;
 
     public TheInternetLoginPage(RemoteWebDriver driver) {
