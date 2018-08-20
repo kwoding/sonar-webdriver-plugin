@@ -1,7 +1,7 @@
 package it.ding.sonar.check.wait;
 
 import static it.ding.sonar.data.CommonData.IMPLICIT_WAIT_CHECK_KEY;
-import static it.ding.sonar.data.CommonData.SELENIUM_PACKAGE_NAME;
+import static it.ding.sonar.util.CommonUtil.isPartOfWebDriverPackage;
 
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.JavaFileScanner;
@@ -34,7 +34,7 @@ public class ImplicitWaitCheck extends BaseTreeVisitor implements JavaFileScanne
                 .fullyQualifiedName();
 
             if (IMPLICITLY_WAIT_METHOD_NAME.equals(methodName) &&
-                fullyQualifiedNameOfExpression.startsWith(SELENIUM_PACKAGE_NAME)) {
+                isPartOfWebDriverPackage(fullyQualifiedNameOfExpression)) {
                 context.reportIssue(this, tree, "Avoid using implicit wait, use explicit wait instead");
             }
         }
