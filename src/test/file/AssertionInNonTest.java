@@ -18,6 +18,7 @@ public class TheInternetLoginPage extends Base {
     private static final By PASSWORD = By.cssSelector("#password");
     private static final By SUBMIT = By.name("submit");
     private static final By CONFIRMATION_TEXT =  By.cssSelector(".confirmationText");
+    private RemoteWebDriver driver;
 
     public TheInternetLoginPage(RemoteWebDriver driver) {
         super(driver);
@@ -31,7 +32,7 @@ public class TheInternetLoginPage extends Base {
         type(USERNAME, username);
         type(PASSWORD, password);
         click(SUBMIT);
-        assertThat("abc", is("def")); // Noncompliant
+        assertThat(driver.findElement(CONFIRMATION_TEXT).getText(), is("Text")); // Noncompliant
     }
 
     public String getConfirmationText() {
