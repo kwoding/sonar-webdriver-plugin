@@ -23,32 +23,43 @@ public class CommonData {
     public static final String WEBDRIVER_COMMAND_IN_TEST_CHECK_KEY = "webdriver-command-in-test-check";
     public static final String ASSERTIONS_IN_NON_TEST_CHECK_KEY = "assertions-in-non-test-check";
 
-    public static final String SELENIUM_PACKAGE_NAME = "org.openqa.selenium";
-    public static final String APPIUM_PACKAGE_NAME = "io.appium";
-    public static final String JUNIT_PACKAGE_NAME = "org.junit";
-    public static final String TESTNG_PACKAGE_NAME = "org.testng";
-    public static final String CUCUMBER_PACKAGE_NAME = "cucumber.api";
     public static final String BY_OBJECT_NAME = "By";
     public static final String FIND_ELEMENT_METHOD_REGEX = "findElement[s]*By";
     public static final String FIND_BY_ANNOTATION_NAME = "FindBy";
     public static final String HOW_PROPERTY = "how";
     public static final String USING_PROPERTY = "using";
-    public static final List<String> LOCATORS_RECOMMENDED = asList(
+
+    public static final String[] WEBDRIVER_PACKAGE_NAMES = {
+        "org.openqa.selenium",
+        "io.appium"
+    };
+
+    public static final String[] TEST_PACKAGE_NAMES = {
+        "org.junit",
+        "org.testng",
+        "cucumber.api"
+    };
+
+    public static final String[] LOCATORS_RECOMMENDED = {
         "cssSelector",
         "className",
         "id",
         "name"
-    );
+    };
 
-    public static final String VERIFY = "verify";
-    public static final String ASSERT = "assert";
-    public static final String FAIL = "fail";
-    public static final String EXPECT = "expect";
+    public static final String[] ASSERTION_METHOD_NAMES = {
+        "verify",
+        "assert",
+        "fail",
+        "expect"
+    };
 
-    //    public static final String JUNIT_PACKAGE_NAME = "org.junit";
-    public static final String FEST_PACKAGE_NAME = "org.fest";
-    public static final String ASSERTJ_PACKAGE_NAME = "org.assertj";
-    public static final String HAMCREST_PACKAGE_NAME = "org.hamcrest";
-    public static final String TRUTH_PACKAGE_NAME = "com.google.common.truth";
-    public static final String VERTX_PACKAGE_NAME = "io.vertx";
+    public static final String[] ASSERTION_PACKAGE_NAMES = {
+        "org.junit",
+        "org.hamcrest",
+        "org.assertj",
+        "org.fest",
+        "com.google.common.truth",
+        "io.vertx"
+    };
 }

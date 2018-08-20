@@ -1,25 +1,16 @@
 package it.ding.sonar.util;
 
-import static it.ding.sonar.data.CommonData.APPIUM_PACKAGE_NAME;
-import static it.ding.sonar.data.CommonData.ASSERT;
-import static it.ding.sonar.data.CommonData.ASSERTJ_PACKAGE_NAME;
+import static it.ding.sonar.data.CommonData.ASSERTION_METHOD_NAMES;
+import static it.ding.sonar.data.CommonData.ASSERTION_PACKAGE_NAMES;
 import static it.ding.sonar.data.CommonData.BY_OBJECT_NAME;
-import static it.ding.sonar.data.CommonData.CUCUMBER_PACKAGE_NAME;
-import static it.ding.sonar.data.CommonData.EXPECT;
-import static it.ding.sonar.data.CommonData.FAIL;
-import static it.ding.sonar.data.CommonData.FEST_PACKAGE_NAME;
 import static it.ding.sonar.data.CommonData.FIND_BY_ANNOTATION_NAME;
 import static it.ding.sonar.data.CommonData.FIND_ELEMENT_METHOD_REGEX;
-import static it.ding.sonar.data.CommonData.HAMCREST_PACKAGE_NAME;
 import static it.ding.sonar.data.CommonData.HOW_PROPERTY;
-import static it.ding.sonar.data.CommonData.JUNIT_PACKAGE_NAME;
-import static it.ding.sonar.data.CommonData.SELENIUM_PACKAGE_NAME;
-import static it.ding.sonar.data.CommonData.TESTNG_PACKAGE_NAME;
 import static it.ding.sonar.data.CommonData.TEST_ANNOTATION_NAMES;
-import static it.ding.sonar.data.CommonData.TRUTH_PACKAGE_NAME;
+import static it.ding.sonar.data.CommonData.TEST_PACKAGE_NAMES;
 import static it.ding.sonar.data.CommonData.USING_PROPERTY;
-import static it.ding.sonar.data.CommonData.VERIFY;
-import static it.ding.sonar.data.CommonData.VERTX_PACKAGE_NAME;
+import static it.ding.sonar.data.CommonData.WEBDRIVER_PACKAGE_NAMES;
+import static org.apache.commons.lang.StringUtils.startsWithAny;
 
 import java.util.HashMap;
 import java.util.List;
@@ -109,6 +100,10 @@ public class CommonUtil {
         return annotationIsPartOfTestPackage;
     }
 
+    public static boolean isPartOfWebDriverPackage(String fullyQualifiedName) {
+        return startsWithAny(fullyQualifiedName, WEBDRIVER_PACKAGE_NAMES);
+    }
+
     private static boolean annotationIsPartOfTestPackage(AnnotationTree annotationTree) {
         String annotation = annotationTree.annotationType().toString();
         String fullyQualifiedName = annotationTree.annotationType().symbolType().fullyQualifiedName();
@@ -128,30 +123,15 @@ public class CommonUtil {
     }
 
     private static boolean methodIsAssertion(String methodName) {
-        return methodName.startsWith(ASSERT) ||
-            methodName.startsWith(FAIL) ||
-            methodName.startsWith(VERIFY) ||
-            methodName.startsWith(EXPECT);
+        return startsWithAny(methodName, ASSERTION_METHOD_NAMES);
     }
 
     private static boolean isPartOfAssertionPackage(String fullyQualifiedName) {
-        return fullyQualifiedName.startsWith(HAMCREST_PACKAGE_NAME) ||
-            fullyQualifiedName.startsWith(JUNIT_PACKAGE_NAME) ||
-            fullyQualifiedName.startsWith(ASSERTJ_PACKAGE_NAME) ||
-            fullyQualifiedName.startsWith(FEST_PACKAGE_NAME) ||
-            fullyQualifiedName.startsWith(TRUTH_PACKAGE_NAME) ||
-            fullyQualifiedName.startsWith(VERTX_PACKAGE_NAME);
+        return startsWithAny(fullyQualifiedName, ASSERTION_PACKAGE_NAMES);
     }
 
-    private static boolean isPartOfWebDriverPackage(String fullyQualifiedName) {
-        return fullyQualifiedName.startsWith(SELENIUM_PACKAGE_NAME) ||
-            fullyQualifiedName.startsWith(APPIUM_PACKAGE_NAME);
-    }
-
-    public static boolean isPartOfTestPackage(String fullyQualifiedName) {
-        return fullyQualifiedName.startsWith(JUNIT_PACKAGE_NAME) ||
-            fullyQualifiedName.startsWith(TESTNG_PACKAGE_NAME) ||
-            fullyQualifiedName.startsWith(CUCUMBER_PACKAGE_NAME);
+    private static boolean isPartOfTestPackage(String fullyQualifiedName) {
+        return startsWithAny(fullyQualifiedName, TEST_PACKAGE_NAMES);
     }
 
     public static IdentifierTree getIdentifier(MethodInvocationTree methodInvocationTree) {
