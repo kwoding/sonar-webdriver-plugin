@@ -29,6 +29,13 @@ public class CommonData {
     public static final String HOW_PROPERTY = "how";
     public static final String USING_PROPERTY = "using";
 
+    public static final List<String> LOCATORS_RECOMMENDED = asList(
+        "cssSelector",
+        "className",
+        "id",
+        "name"
+    );
+
     public static final String[] WEBDRIVER_PACKAGE_NAMES = {
         "org.openqa.selenium",
         "io.appium"
@@ -40,12 +47,6 @@ public class CommonData {
         "cucumber.api"
     };
 
-    public static final String[] LOCATORS_RECOMMENDED = {
-        "cssSelector",
-        "className",
-        "id",
-        "name"
-    };
 
     public static final String[] ASSERTION_METHOD_NAMES = {
         "verify",
