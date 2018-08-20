@@ -3,6 +3,7 @@ package it.ding.sonar.check;
 import static it.ding.sonar.data.CommonData.METHOD_KIND;
 import static it.ding.sonar.util.CommonUtil.annotationsContainAnnotationWhichIsPartOfTestPackage;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.sonar.plugins.java.api.JavaFileScanner;
 import org.sonar.plugins.java.api.JavaFileScannerContext;
@@ -25,21 +26,16 @@ public class BaseTestCheck extends BaseTreeVisitor implements JavaFileScanner {
 
     @Override
     public void visitClass(ClassTree tree) {
-        boolean visitClass = false;
-
+        List<AnnotationTree> annotationTrees = new ArrayList<>();
         List<Tree> members = tree.members();
 
         for (Tree member : members) {
             if (METHOD_KIND.equals(member.kind().toString())) {
-                List<AnnotationTree> annotationTrees = ((MethodTree) member).modifiers().annotations();
-
-                if (annotationsContainAnnotationWhichIsPartOfTestPackage(annotationTrees)) {
-                    visitClass = true;
-                }
+                annotationTrees.addAll(((MethodTree) member).modifiers().annotations());
             }
         }
 
-        if (visitClass) {
+        if (annotationsContainAnnotationWhichIsPartOfTestPackage(annotationTrees)) {
             super.visitClass(tree);
         }
     }

@@ -55,6 +55,7 @@ public class WebDriverChecksTest {
 
   @Test
   public void shouldAvoidAssertionsInNonTest() {
+    JavaCheckVerifier.verifyNoIssue("src/test/file/AssertionInTest.java", new AssertionInNonTestCheck());
     JavaCheckVerifier.verify("src/test/file/AssertionInNonTest.java", new AssertionInNonTestCheck());
   }
 
