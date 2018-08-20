@@ -26,5 +26,5 @@ mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=<a valid to
 
 For test code (src/test/java), run:
 ```
-mvn sonar:sonar -Dsonar.projectKey=<my project>-tests -Dsonar.host.url=http://localhost:9000 -Dsonar.login=<a valid token> -Dsonar.sources=src/test -Dsonar.test.inclusions=src/test/java/*
+mvn sonar:sonar -Dsonar.projectKey=<my project>-tests -Dsonar.host.url=http://localhost:9000 -Dsonar.login=<a valid token> -Dsonar.sources=src/test -Dsonar.test.inclusions=src/test/java
 ```
