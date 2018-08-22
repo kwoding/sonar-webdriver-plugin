@@ -1,1 +1,25 @@
-<p>Assertions should not be used in non test classes, such as page objects</p>
+<p>Assertions should not be used in non test classes, such as page objects. Throw exceptions instead to verify.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+    public void someMethod() {
+        // ...
+        assertThat(driver.findElement(CONFIRMATION_TEXT).getText(), is("Text")); // Noncompliant
+    }
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+    public void someMethod() {
+      // ...
+      isDisplayed(CONFIRMATION_TEXT);
+    }
+
+    public boolean isDisplayed(By locator, int timeout) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, timeout);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (org.openqa.selenium.TimeoutException exception) {
+            return false;
+        }
+        return true;
+    }
+</pre>

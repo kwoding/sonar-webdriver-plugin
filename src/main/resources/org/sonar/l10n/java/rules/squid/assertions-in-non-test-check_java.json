@@ -5,6 +5,6 @@
   "tags": [
     "webdriver"
   ],
-  "defaultSeverity": "Major",
+  "defaultSeverity": "Info",
   "scope": "all"
 }
