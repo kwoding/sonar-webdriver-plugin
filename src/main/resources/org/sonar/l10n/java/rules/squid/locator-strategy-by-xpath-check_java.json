@@ -1,10 +1,10 @@
 {
-  "title": "Should not use locator strategy by xpath",
+  "title": "Locator strategy by xpath is not recommended",
   "type": "CODE_SMELL",
   "status": "ready",
   "tags": [
     "webdriver"
   ],
-  "defaultSeverity": "Major",
+  "defaultSeverity": "Info",
   "scope": "all"
 }

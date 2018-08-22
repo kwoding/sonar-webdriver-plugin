@@ -49,7 +49,7 @@ public class LocatorStrategyByXpathCheck extends BaseTreeVisitor implements Java
     private void checkLocator(ExpressionTree expressionTree, String locatorStrategy) {
         if (XPATH_LOCATOR.equalsIgnoreCase(locatorStrategy)) {
             context.reportIssue(this, expressionTree,
-                "Avoid using " + XPATH_LOCATOR + " locator, try using " + LOCATORS_RECOMMENDED.toString());
+                XPATH_LOCATOR + " locator is not recommended, try using " + LOCATORS_RECOMMENDED.toString());
         }
     }
 
