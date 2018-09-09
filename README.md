@@ -1,7 +1,7 @@
 # Sonar WebDriver Plugin
 
 ## Description
-The Sonar WebDriver Plugin is a static code analysis tool for detecting bad practices using WebDriver (Selenium or Appium).
+The Sonar WebDriver Plugin is a static code analysis tool that helps following best practices for writing WebDriver (Selenium or Appium) tests.
 
 ## Build and run
 1. Build
