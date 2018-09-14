@@ -1,5 +1,7 @@
 # Sonar WebDriver Plugin
 
+Build status: [![build_status](https://travis-ci.org/kwoding/sonar-webdriver-plugin.svg?branch=master)](https://travis-ci.org/kwoding/sonar-webdriver-plugin)
+
 ## Description
 The Sonar WebDriver Plugin is a static code analysis tool that helps following best practices for writing WebDriver (Selenium or Appium) tests.
 
