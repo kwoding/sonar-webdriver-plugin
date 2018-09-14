@@ -1,1 +1,14 @@
 language: java
+before_deploy:
+- mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+- export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep
+  -v '\[')
+deploy:
+  provider: releases
+  api_key:
+    secure: jrJghxj6OxaU56DnE08yOIwW3uvCwwaKshAePxhjJsD72XeB7zTgRmKyzQXvz5Oe2/F9PAA7tToONEAS01/gE6kBZ79YlRUkXMf4ccS/zwbNB26ZCH9d/DeabAeQUBiRvWPT1CZz9Oeo2eVP+/9pzKX5v4+Yz3/p1TdnBlKb9SvlYaPcr4i4kaWVdqcknOeKDfkHR8L5EWr2iuscwUoabr0B8Ll+/h+Pqf4+UbRxwJLMHK7na4kbFWIXIBeprAr9F0Ny8L8SAEcXAoZJ3rdO0+HuhkDFDk2z6d/N2vp/zx+1uJOXVxSHEaSVT7dXSk20jpzqWpwuvv1WwE8xUmwmfTv9jOZ/X1JphKAycOfquav/t8L0uRyMxqGqZ0JM1aewIlkF5e2gANP1i4Bw0O5HNwCwAaLxSwlTPEAeHLFdabapK9e/nR9BwMYUfgV3lsE+tzry0HEBqOM/Yhl2WD5Y8ZnRhjyhsfY7jN2DZkx9L9FUNdFMwKp4p6/uUMEjM21qfeTPd8GOujewRTn1avVsXjU53ZzXtXsaayJkhZ3zn3gpYPpopfRM3dVxNRRU2U67JoiWWB0k1q/WAwF9mSsjGk61yKM2RkDOg1DWFwdKs0vaWNH2hrLUNAM08ImLz9vCwyPan1PyAAn4hcBkVf20FZOG6L4XM7IWFnzPvii3GwQ=
+  file: target/sonar-webdriver-plugin-$project_version.jar
+  skip_cleanup: true
+  on:
+    repo: kwoding/sonar-webdriver-plugin
+  name: $project_version
