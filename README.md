@@ -5,7 +5,7 @@ Build status: [![build_status](https://travis-ci.org/kwoding/sonar-webdriver-plu
 ## Description
 The Sonar WebDriver Plugin is a static code analysis tool that helps following best practices for writing WebDriver (Selenium or Appium) tests.
 
-## How to install plugin
+## How to install this plugin
 1. Copy `sonar-webdriver-plugin-<version>.jar` to `/path/to/sonarqube/extensions/plugins/` directory of your SonarQube server
 2. (Re)start SonarQube
 
