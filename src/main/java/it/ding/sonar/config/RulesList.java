@@ -3,6 +3,7 @@ package it.ding.sonar.config;
 import com.google.common.collect.ImmutableList;
 import it.ding.sonar.check.AssertionInNonTestCheck;
 import it.ding.sonar.check.WebDriverCommandInTestCheck;
+import it.ding.sonar.check.locator.ClassNameLocatorValueCheck;
 import it.ding.sonar.check.locator.CssLocatorValueCheck;
 import it.ding.sonar.check.locator.IdLocatorValueCheck;
 import it.ding.sonar.check.locator.LocatorStrategyByLinkTextAndTagNameCheck;
@@ -29,6 +30,7 @@ public final class RulesList {
       .add(LocatorStrategyByLinkTextAndTagNameCheck.class)
       .add(LocatorStrategyByXpathCheck.class)
       .add(IdLocatorValueCheck.class)
+      .add(ClassNameLocatorValueCheck.class)
       .add(XpathLocatorValueCheck.class)
       .add(ExplicitWaitInTestCheck.class)
       .add(HardCodedSleepCheck.class)

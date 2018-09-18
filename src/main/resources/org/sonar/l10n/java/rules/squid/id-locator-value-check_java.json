@@ -1,5 +1,5 @@
 {
-  "title": "Invalid id locator",
+  "title": "Should avoid invalid id locators",
   "type": "BUG",
   "status": "ready",
   "tags": [
