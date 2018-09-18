@@ -1,0 +1,12 @@
+<p>Ensure that there are no compound class names (multiple space-delimited classes) used as a value for the By.className
+  locator.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+  By.className("class1 class2");
+  By.className("class1 class2 class3");
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+  By.className("class1");
+  By.className("someValue");
+</pre>

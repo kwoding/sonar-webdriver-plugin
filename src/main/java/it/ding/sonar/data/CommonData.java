@@ -18,6 +18,7 @@ public class CommonData {
     public static final String LOCATOR_STRATEGY_BY_XPATH_CHECK_KEY = "locator-strategy-by-xpath-check";
     public static final String XPATH_LOCATOR_VALUE_CHECK = "xpath-locator-value-check";
     public static final String ID_LOCATOR_VALUE_CHECK = "id-locator-value-check";
+    public static final String CLASS_NAME_LOCATOR_VALUE_CHECK = "class-name-locator-value-check";
     public static final String EXPLICIT_WAIT_IN_TEST_CHECK_KEY = "explicit-wait-in-test-check";
     public static final String HARD_CODED_SLEEP_CHECK_KEY = "hard-coded-sleep-check";
     public static final String IMPLICIT_WAIT_CHECK_KEY = "implicit-wait-check";

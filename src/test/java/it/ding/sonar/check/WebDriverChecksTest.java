@@ -1,5 +1,6 @@
 package it.ding.sonar.check;
 
+import it.ding.sonar.check.locator.ClassNameLocatorValueCheck;
 import it.ding.sonar.check.locator.CssLocatorValueCheck;
 import it.ding.sonar.check.locator.IdLocatorValueCheck;
 import it.ding.sonar.check.locator.LocatorStrategyByLinkTextAndTagNameCheck;
@@ -27,6 +28,11 @@ public class WebDriverChecksTest {
   @Test
   public void shouldAvoidInvalidIdLocator() {
     JavaCheckVerifier.verify("src/test/file/LocatorIdValue.java", new IdLocatorValueCheck());
+  }
+
+  @Test
+  public void shouldAvoidCompoundClassNamesLocator() {
+    JavaCheckVerifier.verify("src/test/file/ClassNameValue.java", new ClassNameLocatorValueCheck());
   }
 
   @Test
