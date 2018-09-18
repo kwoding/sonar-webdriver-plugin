@@ -1,0 +1,10 @@
+{
+  "title": "Invalid id locator",
+  "type": "BUG",
+  "status": "ready",
+  "tags": [
+    "webdriver"
+  ],
+  "defaultSeverity": "Critical",
+  "scope": "all"
+}

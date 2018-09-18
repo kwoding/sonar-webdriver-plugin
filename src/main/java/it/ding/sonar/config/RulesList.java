@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import it.ding.sonar.check.AssertionInNonTestCheck;
 import it.ding.sonar.check.WebDriverCommandInTestCheck;
 import it.ding.sonar.check.locator.CssLocatorValueCheck;
+import it.ding.sonar.check.locator.IdLocatorValueCheck;
 import it.ding.sonar.check.locator.LocatorStrategyByLinkTextAndTagNameCheck;
 import it.ding.sonar.check.locator.LocatorStrategyByXpathCheck;
 import it.ding.sonar.check.locator.XpathLocatorValueCheck;
@@ -27,6 +28,7 @@ public final class RulesList {
       .add(CssLocatorValueCheck.class)
       .add(LocatorStrategyByLinkTextAndTagNameCheck.class)
       .add(LocatorStrategyByXpathCheck.class)
+      .add(IdLocatorValueCheck.class)
       .add(XpathLocatorValueCheck.class)
       .add(ExplicitWaitInTestCheck.class)
       .add(HardCodedSleepCheck.class)

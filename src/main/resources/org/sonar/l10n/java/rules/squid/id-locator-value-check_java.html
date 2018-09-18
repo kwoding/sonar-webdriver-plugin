@@ -1,0 +1,25 @@
+<p>Ensure ID is valid when using by.id() locator, based on HTML4 standard to determine the validness of the ID.
+  It checks whether if the ID matches the following rule:</p>
+<blockquote>ID token must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]),
+  hyphens ("-"), underscores ("_"), colons (":"), and periods (".").</blockquote>
+<p>Take into account that HTML5 is even more permissive.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+  By.id("#id");
+  By.id("1startwithnumber");
+  By.id("_");
+  By.id("#");
+  By.id("invalid*id");
+  By.id("id with spaces");
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+  By.id("validID");
+  By.id("simpleid");
+  By.id("foo-bar");
+  By.id("foo:bar");
+  By.id("foo_bar");
+  By.id("foo.bar");
+  By.id("a123456789");
+  By.id("a1-_:.r2D2");
+</pre>
