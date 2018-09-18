@@ -22,7 +22,7 @@ public class LocatorStrategyByLinkTextAndTagNameCheck extends BaseTreeVisitor im
 
     private JavaFileScannerContext context;
 
-    public static final List<String> LOCATORS_TO_AVOID = asList(
+    private static final List<String> LOCATORS_TO_AVOID = asList(
         "linkText",
         "partialLinkText",
         "tagName",

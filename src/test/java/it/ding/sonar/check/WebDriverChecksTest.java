@@ -1,6 +1,7 @@
 package it.ding.sonar.check;
 
 import it.ding.sonar.check.locator.CssLocatorValueCheck;
+import it.ding.sonar.check.locator.IdLocatorValueCheck;
 import it.ding.sonar.check.locator.LocatorStrategyByLinkTextAndTagNameCheck;
 import it.ding.sonar.check.locator.LocatorStrategyByXpathCheck;
 import it.ding.sonar.check.locator.XpathLocatorValueCheck;
@@ -21,6 +22,11 @@ public class WebDriverChecksTest {
   @Test
   public void shouldAvoidLocatorByXpath() {
     JavaCheckVerifier.verify("src/test/file/LocatorStrategyByXpath.java", new LocatorStrategyByXpathCheck());
+  }
+
+  @Test
+  public void shouldAvoidInvalidIdLocator() {
+    JavaCheckVerifier.verify("src/test/file/LocatorIdValue.java", new IdLocatorValueCheck());
   }
 
   @Test

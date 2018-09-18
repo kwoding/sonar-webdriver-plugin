@@ -48,12 +48,9 @@ public class CssLocatorValueCheck extends BaseTreeVisitor implements JavaFileSca
 
     @Override
     public void visitMethodInvocation(MethodInvocationTree tree) {
-        if (methodInvocationIsElementFinder(tree)) {
+        if (methodInvocationIsElementFinder(tree) && !tree.arguments().isEmpty()) {
             String locatorStrategy = getIdentifier(tree).name();
-
-            String locatorValue = !tree.arguments().isEmpty()
-                ? ((LiteralTree) tree.arguments().get(0)).value()
-                : null;
+            String locatorValue = ((LiteralTree) tree.arguments().get(0)).value();
 
             checkLocator(tree, locatorStrategy, locatorValue);
         }

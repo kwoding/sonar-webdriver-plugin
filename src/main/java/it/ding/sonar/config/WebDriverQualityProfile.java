@@ -3,6 +3,7 @@ package it.ding.sonar.config;
 import static it.ding.sonar.data.CommonData.ASSERTIONS_IN_NON_TEST_CHECK_KEY;
 import static it.ding.sonar.data.CommonData.EXPLICIT_WAIT_IN_TEST_CHECK_KEY;
 import static it.ding.sonar.data.CommonData.HARD_CODED_SLEEP_CHECK_KEY;
+import static it.ding.sonar.data.CommonData.ID_LOCATOR_VALUE_CHECK;
 import static it.ding.sonar.data.CommonData.IMPLICIT_WAIT_CHECK_KEY;
 import static it.ding.sonar.data.CommonData.CSS_LOCATOR_VALUE_CHECK;
 import static it.ding.sonar.data.CommonData.LOCATOR_STRATEGY_BY_LINK_TEXT_AND_TAG_NAME_CHECK_KEY;
@@ -27,6 +28,7 @@ public class WebDriverQualityProfile implements BuiltInQualityProfilesDefinition
         profile.activateRule(REPOSITORY_KEY, LOCATOR_STRATEGY_BY_LINK_TEXT_AND_TAG_NAME_CHECK_KEY);
         profile.activateRule(REPOSITORY_KEY, LOCATOR_STRATEGY_BY_XPATH_CHECK_KEY);
         profile.activateRule(REPOSITORY_KEY, XPATH_LOCATOR_VALUE_CHECK);
+        profile.activateRule(REPOSITORY_KEY, ID_LOCATOR_VALUE_CHECK);
         profile.activateRule(REPOSITORY_KEY, EXPLICIT_WAIT_IN_TEST_CHECK_KEY);
         profile.activateRule(REPOSITORY_KEY, HARD_CODED_SLEEP_CHECK_KEY);
         profile.activateRule(REPOSITORY_KEY, IMPLICIT_WAIT_CHECK_KEY);
