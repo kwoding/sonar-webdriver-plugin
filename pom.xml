@@ -11,6 +11,12 @@
     <name>Sonar WebDriver Plugin</name>
     <description>WebDriver plugin for Sonar</description>
 
+    <scm>
+        <url>https://github.com/kwoding/sonar-webdriver-plugin</url>
+        <connection>scm:git:https://github.com/kwoding/sonar-webdriver-plugin.git</connection>
+        <developerConnection>scm:git:https://github.com/kwoding/sonar-webdriver-plugin.git</developerConnection>
+    </scm>
+
     <properties>
         <sonar.version>7.2.1</sonar.version>
         <sonarjava.version>5.6.1.15064</sonarjava.version>
@@ -30,6 +36,7 @@
         <selenium.version>3.14.0</selenium.version>
         <selenium-remote-driver.version>3.0.1</selenium-remote-driver.version>
         <selenium-support.version>3.11.0</selenium-support.version>
+        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
     </properties>
 
     <dependencies>
@@ -120,6 +127,11 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
             </plugin>
 
             <!-- only required to run UT - these are UT dependencies -->
