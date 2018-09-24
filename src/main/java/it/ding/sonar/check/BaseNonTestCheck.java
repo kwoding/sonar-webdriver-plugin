@@ -15,7 +15,7 @@ import org.sonar.plugins.java.api.tree.Tree;
 
 public class BaseNonTestCheck extends BaseTreeVisitor implements JavaFileScanner {
 
-    public JavaFileScannerContext context;
+    private JavaFileScannerContext context;
 
     @Override
     public void scanFile(JavaFileScannerContext context) {
@@ -35,10 +35,12 @@ public class BaseNonTestCheck extends BaseTreeVisitor implements JavaFileScanner
             }
         }
 
-        if (annotationTrees.isEmpty()) {
-            super.visitClass(tree);
-        } else if (!annotationsContainAnnotationWhichIsPartOfTestPackage(annotationTrees)) {
+        if (annotationTrees.isEmpty() || !annotationsContainAnnotationWhichIsPartOfTestPackage(annotationTrees)) {
             super.visitClass(tree);
         }
+    }
+
+    public JavaFileScannerContext getContext() {
+        return context;
     }
 }

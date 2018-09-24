@@ -27,6 +27,9 @@ import org.sonar.plugins.java.api.tree.Tree.Kind;
 
 public class CommonUtil {
 
+    private CommonUtil() {
+    }
+
     public static Map<String, String> getLocatorValueMapInAnnotation(AnnotationTree annotationTree) {
         Map<String, String> locatorMap = new HashMap<>();
         String annotationType = annotationTree.annotationType().toString();
@@ -53,7 +56,7 @@ public class CommonUtil {
                     .findFirst()
                     .orElse(null);
 
-                if (USING_PROPERTY.equals(property)) {
+                if (howExpressionTree != null && USING_PROPERTY.equals(property)) {
                     String howLocator = ((MemberSelectExpressionTree) ((AssignmentExpressionTree) howExpressionTree)
                         .expression()).identifier().name();
                     locatorMap.put(howLocator, propertyValue);
