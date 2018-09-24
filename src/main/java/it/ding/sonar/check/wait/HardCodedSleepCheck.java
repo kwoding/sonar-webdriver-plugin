@@ -13,7 +13,7 @@ import org.sonar.plugins.java.api.tree.Tree;
 @Rule(key = HARD_CODED_SLEEP_CHECK_KEY)
 public class HardCodedSleepCheck extends BaseTreeVisitor implements JavaFileScanner {
 
-    public JavaFileScannerContext context;
+    private JavaFileScannerContext context;
     private static final String SLEEP_METHOD_NAME = "sleep";
     private static final String THREAD = "java.lang.Thread";
 

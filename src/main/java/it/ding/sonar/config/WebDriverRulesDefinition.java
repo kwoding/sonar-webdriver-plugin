@@ -6,6 +6,12 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Iterables;
 import com.google.common.io.Resources;
 import com.google.gson.Gson;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Locale;
+import javax.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
 import org.sonar.api.rule.RuleScope;
 import org.sonar.api.rule.RuleStatus;
@@ -14,15 +20,6 @@ import org.sonar.api.server.debt.DebtRemediationFunction;
 import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.server.rule.RulesDefinitionAnnotationLoader;
 import org.sonar.api.utils.AnnotationUtils;
-import org.sonar.check.Cardinality;
-import org.sonar.squidbridge.annotations.RuleTemplate;
-
-import javax.annotation.Nullable;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Locale;
 
 public class WebDriverRulesDefinition implements RulesDefinition {
 
@@ -64,11 +61,6 @@ public class WebDriverRulesDefinition implements RulesDefinition {
       throw new IllegalStateException("No rule was created for " + ruleClass + " in " + repository.key());
     }
     ruleMetadata(ruleClass, rule);
-
-    rule.setTemplate(AnnotationUtils.getAnnotation(ruleClass, RuleTemplate.class) != null);
-    if (ruleAnnotation.cardinality() == Cardinality.MULTIPLE) {
-      throw new IllegalArgumentException("Cardinality is not supported, use the RuleTemplate annotation instead for " + ruleClass);
-    }
   }
 
   private String ruleMetadata(Class<?> ruleClass, NewRule rule) {

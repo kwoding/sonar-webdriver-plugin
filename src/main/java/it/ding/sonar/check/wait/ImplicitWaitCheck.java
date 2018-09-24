@@ -14,7 +14,7 @@ import org.sonar.plugins.java.api.tree.Tree;
 @Rule(key = IMPLICIT_WAIT_CHECK_KEY)
 public class ImplicitWaitCheck extends BaseTreeVisitor implements JavaFileScanner {
 
-    public JavaFileScannerContext context;
+    private JavaFileScannerContext context;
     private static final String IMPLICITLY_WAIT_METHOD_NAME = "implicitlyWait";
 
     @Override

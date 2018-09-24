@@ -15,7 +15,7 @@ import org.sonar.plugins.java.api.tree.Tree;
 
 public class BaseTestCheck extends BaseTreeVisitor implements JavaFileScanner {
 
-    public JavaFileScannerContext context;
+    private JavaFileScannerContext context;
 
     @Override
     public void scanFile(JavaFileScannerContext context) {
@@ -38,5 +38,9 @@ public class BaseTestCheck extends BaseTreeVisitor implements JavaFileScanner {
         if (annotationsContainAnnotationWhichIsPartOfTestPackage(annotationTrees)) {
             super.visitClass(tree);
         }
+    }
+
+    public JavaFileScannerContext getContext() {
+        return context;
     }
 }
