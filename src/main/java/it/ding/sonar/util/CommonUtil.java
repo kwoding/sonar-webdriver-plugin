@@ -30,7 +30,20 @@ public class CommonUtil {
     private CommonUtil() {
     }
 
-    public static Map<String, String> getLocatorValueMapInAnnotation(AnnotationTree annotationTree) {
+    public static Map<String, String> getLocatorValueMapInMethodInvocationTree(MethodInvocationTree tree) {
+        Map<String, String> methodInvocationLocatorValueMap = new HashMap<>();
+
+        if (methodInvocationIsElementFinder(tree) && !tree.arguments().isEmpty()) {
+            String locatorStrategy = getIdentifier(tree).name();
+            String locatorValue = ((LiteralTree) tree.arguments().get(0)).value().replace("\"", "");
+
+            methodInvocationLocatorValueMap.put(locatorStrategy, locatorValue);
+        }
+
+        return methodInvocationLocatorValueMap;
+    }
+
+    public static Map<String, String> getLocatorValueMapInAnnotationTree(AnnotationTree annotationTree) {
         Map<String, String> locatorMap = new HashMap<>();
         String annotationType = annotationTree.annotationType().toString();
         String fullyQualifiedName = annotationTree.annotationType().symbolType().fullyQualifiedName();
@@ -46,8 +59,9 @@ public class CommonUtil {
                     .expression()).identifier().name()
                     : ((AssignmentExpressionTree) expressionTree).variable().toString();
 
-                String propertyValue = assignmentExpressionTree.expression().is(Kind.STRING_LITERAL) ?
-                    ((LiteralTree) assignmentExpressionTree.expression()).value() : null;
+                String propertyValue = assignmentExpressionTree.expression().is(Kind.STRING_LITERAL)
+                    ? ((LiteralTree) assignmentExpressionTree.expression()).value().replace("\"", "")
+                    : null;
 
                 ExpressionTree howExpressionTree = annotationTree.arguments()
                     .stream()
@@ -79,7 +93,7 @@ public class CommonUtil {
         return isPartOfWebDriverPackage(fullyQualifiedName);
     }
 
-    public static boolean methodInvocationIsElementFinder(MethodInvocationTree methodInvocationTree) {
+    private static boolean methodInvocationIsElementFinder(MethodInvocationTree methodInvocationTree) {
         if (getIdentifier(methodInvocationTree).symbol().isUnknown()) {
             return false;
         }
@@ -137,7 +151,7 @@ public class CommonUtil {
         return startsWithAny(fullyQualifiedName, TEST_PACKAGE_NAMES);
     }
 
-    public static IdentifierTree getIdentifier(MethodInvocationTree methodInvocationTree) {
+    private static IdentifierTree getIdentifier(MethodInvocationTree methodInvocationTree) {
         // methodSelect can only be Tree.Kind.IDENTIFIER or Tree.Kind.MEMBER_SELECT
         if (methodInvocationTree.methodSelect().is(Tree.Kind.IDENTIFIER)) {
             return (IdentifierTree) methodInvocationTree.methodSelect();
