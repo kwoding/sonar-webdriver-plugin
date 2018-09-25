@@ -5,24 +5,12 @@ import static it.ding.sonar.util.CommonUtil.annotationsContainAnnotationWhichIsP
 
 import java.util.ArrayList;
 import java.util.List;
-import org.sonar.plugins.java.api.JavaFileScanner;
-import org.sonar.plugins.java.api.JavaFileScannerContext;
 import org.sonar.plugins.java.api.tree.AnnotationTree;
-import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.ClassTree;
 import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.plugins.java.api.tree.Tree;
 
-public class BaseTestCheck extends BaseTreeVisitor implements JavaFileScanner {
-
-    private JavaFileScannerContext context;
-
-    @Override
-    public void scanFile(JavaFileScannerContext context) {
-        this.context = context;
-
-        super.scan(context.getTree());
-    }
+public class BaseTestCheck extends Base {
 
     @Override
     public void visitClass(ClassTree tree) {
@@ -40,7 +28,4 @@ public class BaseTestCheck extends BaseTreeVisitor implements JavaFileScanner {
         }
     }
 
-    public JavaFileScannerContext getContext() {
-        return context;
-    }
 }
