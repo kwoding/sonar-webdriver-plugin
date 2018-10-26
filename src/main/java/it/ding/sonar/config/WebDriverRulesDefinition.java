@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Locale;
 import javax.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
-import org.sonar.api.rule.RuleScope;
 import org.sonar.api.rule.RuleStatus;
 import org.sonar.api.rules.RuleType;
 import org.sonar.api.server.debt.DebtRemediationFunction;
@@ -84,7 +83,6 @@ public class WebDriverRulesDefinition implements RulesDefinition {
       rule.addTags(metadata.tags);
       rule.setType(RuleType.valueOf(metadata.type));
       rule.setStatus(RuleStatus.valueOf(metadata.status.toUpperCase(Locale.US)));
-      rule.setScope(RuleScope.valueOf(metadata.scope.toUpperCase(Locale.US)));
       if (metadata.remediation != null) {
         rule.setDebtRemediationFunction(metadata.remediation.remediationFunction(rule.debtRemediationFunctions()));
         rule.setGapDescription(metadata.remediation.linearDesc);
@@ -116,7 +114,6 @@ public class WebDriverRulesDefinition implements RulesDefinition {
     String type;
     String[] tags;
     String defaultSeverity;
-    String scope;
   }
 
   private static class Remediation {
