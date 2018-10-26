@@ -1,14 +1,16 @@
 <p>Assertions should not be used in non test classes, such as page objects. Throw exceptions instead to verify.</p>
 <h2>Noncompliant Code Example</h2>
 <pre>
-    public void someMethod() {
+    // Non test class such as Page Object
+    public void confirmationShown() {
         // ...
         assertThat(driver.findElement(CONFIRMATION_TEXT).getText(), is("Text")); // Noncompliant
     }
 </pre>
 <h2>Compliant Solution</h2>
 <pre>
-    public void someMethod() {
+    // Non test class such as Page Object
+    public boolean confirmationShown() {
       // ...
       isDisplayed(CONFIRMATION_TEXT);
     }
