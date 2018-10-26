@@ -5,6 +5,5 @@
   "tags": [
     "webdriver"
   ],
-  "defaultSeverity": "Critical",
-  "scope": "all"
+  "defaultSeverity": "Critical"
 }
