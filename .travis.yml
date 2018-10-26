@@ -6,11 +6,7 @@ script:
 - git config --local user.email "builds@travis-ci.com"
 - git checkout -f master
 - mvn -B release:prepare -DskipTests=true -DscmCommentPrefix="[ci skip][maven-release-plugin] " -Dusername=${GITHUB_USERNAME} -Dpassword=${GITHUB_TOKEN}
-- mvn sonar:sonar \
-  -Dsonar.projectKey=kwoding_sonar-webdriver-plugin \
-  -Dsonar.organization=kwoding-github \
-  -Dsonar.host.url=https://sonarcloud.io \
-  -Dsonar.login=${SONAR_TOKEN}
+- mvn sonar:sonar -Dsonar.projectKey=kwoding_sonar-webdriver-plugin -Dsonar.organization=kwoding-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${SONAR_TOKEN}
 before_deploy:
 - export TAG=$(git describe --tags --abbrev=0)
 deploy:
