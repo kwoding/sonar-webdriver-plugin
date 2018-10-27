@@ -1,6 +1,6 @@
 # Sonar WebDriver Plugin
 
-Build status: [![build_status](https://travis-ci.org/kwoding/sonar-webdriver-plugin.svg?branch=master)](https://travis-ci.org/kwoding/sonar-webdriver-plugin)
+[![build_status](https://travis-ci.org/kwoding/sonar-webdriver-plugin.svg?branch=master)](https://travis-ci.org/kwoding/sonar-webdriver-plugin)
 
 ## Description
 The Sonar WebDriver Plugin is a static code analysis tool that helps following best practices for writing WebDriver (Selenium or Appium) tests.
@@ -28,3 +28,18 @@ mvn sonar:sonar -Dsonar.projectKey=<my project>-tests -Dsonar.host.url=http://lo
 ```
 ## Quickstart: No SonarQube?
 Fastest way to get a local SonarQube server up and running in order to scan code, use the [Docker image](https://hub.docker.com/r/kwoding/sonarqube-webdriver/) which is based on the official SonarQube image to include this plugin.
+
+## How to use SonarLint for instant feedback
+For instant feedback while writing code, use [SonarLint](https://www.sonarlint.org/) in your IDE.
+
+1. Set up a project on the local/remote SonarQube server with the WebDriver quality profile enabled.
+2. Configure SonarLint to point to the project on your server (e.g. `http://localhost:9000`) using a valid token.
+3. That's it!
+
+## Screenshots
+
+![SonarQube rule overview](./doc/img/sonarqube-rule-overview.png)
+
+![SonarQube rule detail](./doc/img/sonarqube-rule-detail.png)
+
+![SonarLint example](./doc/img/sonarlint-example.png)
