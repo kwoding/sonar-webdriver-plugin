@@ -6,28 +6,45 @@ import static it.ding.sonar.data.CommonData.BY_OBJECT_NAME;
 import static it.ding.sonar.data.CommonData.FIND_BY_ANNOTATION_NAME;
 import static it.ding.sonar.data.CommonData.FIND_ELEMENT_METHOD_REGEX;
 import static it.ding.sonar.data.CommonData.HOW_PROPERTY;
+import static it.ding.sonar.data.CommonData.METHOD_KIND;
 import static it.ding.sonar.data.CommonData.TEST_ANNOTATION_NAMES;
 import static it.ding.sonar.data.CommonData.TEST_PACKAGE_NAMES;
 import static it.ding.sonar.data.CommonData.USING_PROPERTY;
 import static it.ding.sonar.data.CommonData.WEBDRIVER_PACKAGE_NAMES;
 import static org.apache.commons.lang.StringUtils.startsWithAny;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.sonar.plugins.java.api.tree.AnnotationTree;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
+import org.sonar.plugins.java.api.tree.ClassTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
 import org.sonar.plugins.java.api.tree.LiteralTree;
 import org.sonar.plugins.java.api.tree.MemberSelectExpressionTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
+import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.plugins.java.api.tree.Tree;
 import org.sonar.plugins.java.api.tree.Tree.Kind;
 
 public class CommonUtil {
 
     private CommonUtil() {
+    }
+
+    public static List<AnnotationTree> getAnnotationTrees(ClassTree tree) {
+        List<AnnotationTree> annotationTrees = new ArrayList<>();
+        List<Tree> members = tree.members();
+
+        for (Tree member : members) {
+            if (METHOD_KIND.equals(member.kind().toString())) {
+                annotationTrees.addAll(((MethodTree) member).modifiers().annotations());
+            }
+        }
+
+        return annotationTrees;
     }
 
     public static Map<String, String> getLocatorValueMapInMethodInvocationTree(MethodInvocationTree tree) {
