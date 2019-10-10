@@ -24,8 +24,8 @@
     </scm>
 
     <properties>
-        <sonar.version>7.2.1</sonar.version>
-        <sonarjava.version>5.6.1.15064</sonarjava.version>
+        <sonar.version>7.9.1</sonar.version>
+        <sonarjava.version>5.14.0.18788</sonarjava.version>
         <junit.version>4.11</junit.version>
         <slf4j-api.version>1.6.2</slf4j-api.version>
         <logback-classic.version>0.9.30</logback-classic.version>
