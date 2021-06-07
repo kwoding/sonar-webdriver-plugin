@@ -28,7 +28,7 @@
         <sonarjava.version>5.14.0.18788</sonarjava.version>
         <junit.version>4.13.1</junit.version>
         <slf4j-api.version>1.6.2</slf4j-api.version>
-        <logback-classic.version>0.9.30</logback-classic.version>
+        <logback-classic.version>1.2.0</logback-classic.version>
         <java.version>1.8</java.version>
         <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
         <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
